@@ -1,7 +1,4 @@
-<script setup lang="ts">
-import '~/assets/css/main.css'
-import '~/assets/css/medium-zoom.css'
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <Html lang="en">
@@ -9,7 +6,7 @@ import '~/assets/css/medium-zoom.css'
       <Link rel="icon" href="/favicon.ico" type="image/x-icon" />
     </Head>
 
-    <Body>
+    <Body class="p-4 bg-kavli-blue">
       <AppHeader />
 
       <main class="main">

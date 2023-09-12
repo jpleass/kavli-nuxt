@@ -1,0 +1,19 @@
+# General
+
+- [x] Add TailwindCSS
+- [x] Add IBM Plex Sans font
+- [x] Clean up boilerplate
+- [ ] Figure out error page
+- [ ] Typography
+- [x] Bring over as much from Thonik site as possible
+
+# Components
+
+- [ ] Primary/Secondary Button
+- [ ] Link (External/Internal/Subheading)
+- [ ] Video
+- [ ] Section Header
+- [ ] Programma
+- [ ] General Card
+- [ ] Author Testimonial
+- [ ] Link list (2 column link list)

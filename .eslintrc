@@ -1,6 +1,7 @@
 {
   "root": true,
-  "extends": ["@nuxt/eslint-config", "@unocss", "prettier"],
+  // "extends": ["@nuxt/eslint-config", "@unocss", "prettier"],
+  "extends": ["@nuxt/eslint-config", "prettier"],
   "rules": {
     "sort-imports": [
       "error",

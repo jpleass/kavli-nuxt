@@ -1,0 +1,5 @@
+<template>
+  <section class="mb-8">
+    <slot />
+  </section>
+</template>

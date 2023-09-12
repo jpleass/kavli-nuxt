@@ -52,7 +52,12 @@ const { width } = useElementSize(figure)
         :uuid="props.block.content.image?.[0]"
         :collection="images"
       >
-        <img :src="image.url" :sizes="`${width}px`" :alt="image.alt" />
+        <img
+          v-if="image"
+          :src="image.url"
+          :sizes="`${width}px`"
+          :alt="image.alt"
+        />
       </KirbyUuidResolver>
     </component>
 

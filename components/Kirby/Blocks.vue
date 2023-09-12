@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import {
+  LazyKirbyBlockExpand,
+  LazyKirbyBlockGallery,
+  LazyKirbyBlockGap,
   LazyKirbyBlockHeading,
   LazyKirbyBlockImage,
   LazyKirbyBlockLine,
@@ -7,29 +10,41 @@ import {
   LazyKirbyBlockQuote,
   LazyKirbyBlockText,
 } from '#components'
-import type { ComponentPublicInstance } from 'vue'
 import type { KirbyBlock } from '#nuxt-kql'
 
 defineProps<{
   blocks: KirbyBlock<string>[]
+  noGaps?: boolean
+  rounded?: boolean
 }>()
 
-type ComponentConstructor = new (...args: any[]) => ComponentPublicInstance
-
-const blockComponents: Record<string, ComponentConstructor> = {
+const blockComponents: Record<string, Component> = {
   heading: LazyKirbyBlockHeading,
   image: LazyKirbyBlockImage,
-  line: LazyKirbyBlockLine,
   list: LazyKirbyBlockList,
   quote: LazyKirbyBlockQuote,
   text: LazyKirbyBlockText,
+  gap: LazyKirbyBlockGap,
+  line: LazyKirbyBlockLine,
+  gallery: LazyKirbyBlockGallery,
+  expand: LazyKirbyBlockExpand,
+}
+
+const getComponent = (type: string) => {
+  return blockComponents[type] as Component
 }
 </script>
 
 <template>
   <div v-router-links>
     <template v-for="(block, index) in blocks" :key="index">
-      <component :is="blockComponents[block.type]" :block="block" />
+      <div
+        :class="{
+          'mb-em': !noGaps,
+        }"
+      >
+        <component :is="getComponent(block.type)" :block="block" />
+      </div>
     </template>
   </div>
 </template>

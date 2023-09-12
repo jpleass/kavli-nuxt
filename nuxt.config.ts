@@ -25,13 +25,23 @@ export default defineNuxtConfig({
   nitro: {
     prerender: {
       // Prerender the index page
-      routes: ['/'],
+      routes: [],
     },
   },
 
   experimental: {
     typescriptBundlerResolution: true,
   },
+
+  postcss: {
+    plugins: {
+      'postcss-import': {},
+      tailwindcss: {},
+      autoprefixer: {},
+    },
+  },
+
+  css: ['@/assets/css/main.css'],
 
   typescript: {
     // Recommended: type check on build

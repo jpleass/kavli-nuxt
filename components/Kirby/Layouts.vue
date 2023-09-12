@@ -3,32 +3,39 @@ import type { KirbyLayout } from '#nuxt-kql'
 
 defineProps<{
   layouts: KirbyLayout[]
+  noGaps?: boolean
+  rounded?: boolean
 }>()
 
-/** Returns the number of columns this column spans */
-function span(width: `${string}/${string}`, columns = 12) {
-  const [a, b] = width.split('/')
-  return columns * (parseInt(a) / parseInt(b))
+const getCols = (width: string) => {
+  switch (width) {
+    case '1/1':
+      return 'md:col-span-2 col-span-1'
+    case '1/2':
+      return 'col-span-1'
+    default:
+      return 'md:col-span-2 col-span-1'
+  }
 }
 </script>
 
 <template>
-  <div>
-    <section
-      v-for="layout in layouts"
-      :id="layout.id"
-      :key="layout.id"
-      class="grid margin-xl"
-      style="--gutter: 1.5rem"
+  <div
+    v-for="layout in layouts"
+    :id="layout.id"
+    :key="layout.id"
+    class="grid grid-cols-1 md:gap-em md:grid-cols-2"
+  >
+    <div
+      v-for="(column, index) in layout.columns"
+      :key="index"
+      :class="getCols(column.width)"
     >
-      <div
-        v-for="(column, index) in layout.columns"
-        :key="index"
-        class="column"
-        :style="`--columns: ${span(column.width)}`"
-      >
-        <KirbyBlocks :blocks="column.blocks" class="text" />
-      </div>
-    </section>
+      <KirbyBlocks
+        :blocks="column.blocks"
+        :no-gaps="noGaps"
+        :rounded="rounded"
+      />
+    </div>
   </div>
 </template>
