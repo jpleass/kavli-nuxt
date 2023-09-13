@@ -7,6 +7,9 @@ export interface KirbySiteData {
   description: string
   navigationPages: KirbyPageData[]
   children: KirbyPageData[]
+  footer: {
+    copyright: string
+  }
 }
 
 export type KirbySiteResponse = KirbyQueryResponse<KirbySiteData>
@@ -23,6 +26,11 @@ export const siteQuery: KirbyQuerySchema = {
     children: {
       query: 'site.children',
       select: pageQuery,
+    },
+    footer: {
+      select: {
+        copyright: 'site.footer_copyright.kt',
+      },
     },
   },
 }

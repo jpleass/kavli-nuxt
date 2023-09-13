@@ -9,6 +9,10 @@ export default defineNuxtConfig({
     },
   },
 
+  alias: {
+    types: '/types',
+  },
+
   kql: {
     auth: 'bearer',
     prefetch: {

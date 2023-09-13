@@ -13,29 +13,43 @@
   }
 }
 
+html {
+  font-size: 18px;
+}
+
 @layer components {
   h1 {
-    @apply text-6xl font-bold;
+    font-size: 5em;
+    line-height: 1.2;
+    @apply font-bold;
   }
   h2 {
-    @apply text-5xl font-bold;
+    font-size: 4em;
+    line-height: 1.2;
+    @apply font-bold;
   }
   h3 {
-    font-size: calc(1.8em);
-    @apply leading-tight font-bold tracking-[-0.01em];
+    font-size: 3em;
+    line-height: 1.2;
+    @apply leading-tight font-bold;
   }
   h4 {
-    font-size: calc(1.8em);
-    @apply leading-tight font-bold tracking-[-0.01em];
+    font-size: 2.5em;
+    line-height: 1.2;
+    @apply leading-tight font-bold;
   }
   h5 {
-    @apply font-bold;
+    font-size: 2em;
+    line-height: 1.2;
+    @apply text-xl;
   }
   .caption {
     font-size: 0.9em;
+    line-height: 1.3;
   }
   .small {
     font-size: 0.8em;
+    line-height: 1.3;
   }
   .link {
     @apply md:hover:text-gray-500 transition-colors;

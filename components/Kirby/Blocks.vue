@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import {
   LazyKirbyBlockExpand,
-  LazyKirbyBlockGallery,
   LazyKirbyBlockGap,
   LazyKirbyBlockHeading,
   LazyKirbyBlockImage,
   LazyKirbyBlockLine,
+  LazyKirbyBlockLink,
   LazyKirbyBlockList,
   LazyKirbyBlockQuote,
   LazyKirbyBlockText,
@@ -26,8 +26,12 @@ const blockComponents: Record<string, Component> = {
   text: LazyKirbyBlockText,
   gap: LazyKirbyBlockGap,
   line: LazyKirbyBlockLine,
-  gallery: LazyKirbyBlockGallery,
+  link: LazyKirbyBlockLink,
   expand: LazyKirbyBlockExpand,
+}
+
+const doesComponentExist = (type: string) => {
+  return Object.keys(blockComponents).includes(type)
 }
 
 const getComponent = (type: string) => {
@@ -40,10 +44,20 @@ const getComponent = (type: string) => {
     <template v-for="(block, index) in blocks" :key="index">
       <div
         :class="{
-          'mb-em': !noGaps,
+          'mb-gap': !noGaps,
         }"
       >
-        <component :is="getComponent(block.type)" :block="block" />
+        <component
+          :is="getComponent(block.type)"
+          v-if="doesComponentExist(block.type)"
+          :block="block"
+        />
+        <div v-else class="small border border-red-500 p-1">
+          <span class="font-mono font-bold text-red-500"
+            >{{ block.type }} block</span
+          >
+          does not exist.
+        </div>
       </div>
     </template>
   </div>

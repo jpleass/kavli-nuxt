@@ -6,14 +6,20 @@
       <Link rel="icon" href="/favicon.ico" type="image/x-icon" />
     </Head>
 
-    <Body class="p-4 bg-kavli-blue">
-      <AppHeader />
+    <Body
+      class="antialiased text-black xl:text-lg lg:text-md 2xl:text-xl font-sans bg-kavli-bg"
+    >
+      <div class="flex flex-col min-h-screen">
+        <AppHeader />
 
-      <main class="main">
-        <NuxtPage />
-      </main>
+        <div class="relative flex-1">
+          <main class="main">
+            <NuxtPage />
+          </main>
+        </div>
 
-      <AppFooter />
+        <AppFooter />
+      </div>
     </Body>
   </Html>
 </template>

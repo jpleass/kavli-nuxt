@@ -19,8 +19,7 @@ setPage(page)
 </script>
 
 <template>
-  <article>
-    <h1 class="h1">{{ page?.title }}</h1>
-    <div v-router-links class="text" v-html="page?.text" />
-  </article>
+  <AppPageWrapper>
+    <KirbyLayouts v-if="page && page.layouts" :layouts="page.layouts ?? []" />
+  </AppPageWrapper>
 </template>

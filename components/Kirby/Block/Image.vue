@@ -57,6 +57,7 @@ const { width } = useElementSize(figure)
           :src="image.url"
           :sizes="`${width}px`"
           :alt="image.alt"
+          class="w-full"
         />
       </KirbyUuidResolver>
     </component>

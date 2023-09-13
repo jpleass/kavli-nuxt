@@ -1,4 +1,10 @@
-import type { KirbyQueryResponse, KirbyQuerySchema } from '#nuxt-kql'
+import type {
+  KirbyLayout,
+  KirbyQueryResponse,
+  KirbyQuerySchema,
+} from '#nuxt-kql'
+import type { KirbyImageData } from './image'
+import { kirbyImageQuery } from './image'
 
 export interface KirbyPageData {
   id: string
@@ -7,6 +13,8 @@ export interface KirbyPageData {
   intendedTemplate: string
   children: KirbyPageData[]
   parent: Partial<KirbyPageData>
+  images: KirbyImageData[]
+  layouts: KirbyLayout[]
 }
 
 const childQuery: KirbyQuerySchema['select'] = {
@@ -34,6 +42,11 @@ export const pageQuery: KirbyQuerySchema['select'] = {
       intendedTemplate: true,
     },
   },
+  images: {
+    query: 'page.images',
+    select: kirbyImageQuery,
+  },
+  layouts: 'page.layout.toLayouts',
 }
 
 export type KirbyPageResponse = KirbyQueryResponse<KirbyPageData>

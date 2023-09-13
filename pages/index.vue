@@ -10,8 +10,11 @@ setPage(page)
 </script>
 
 <template>
-  <div v-if="page">
-    <KirbyLayouts v-if="page.layouts" :layouts="page.layouts ?? []" />
+  <div>
+    <!-- Body -->
+    <AppSection>
+      <KirbyLayouts v-if="page && page.layouts" :layouts="page.layouts ?? []" />
+    </AppSection>
   </div>
 </template>
 

@@ -10,10 +10,14 @@
 # Components
 
 - [ ] Primary/Secondary Button
-- [ ] Link (External/Internal/Subheading)
+- [x] Link (External/Internal/Subheading)
 - [ ] Video
 - [ ] Section Header
 - [ ] Programma
 - [ ] General Card
 - [ ] Author Testimonial
 - [ ] Link list (2 column link list)
+
+# Layouts
+
+- [x] Need different aligns.

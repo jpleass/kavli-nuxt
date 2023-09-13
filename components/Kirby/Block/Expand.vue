@@ -1,23 +1,23 @@
 <script lang="tsx" setup>
-import type { KirbyBlock, KirbyLayout } from '#nuxt-kql'
+import type { KirbyBlock, KirbyLayout } from "#nuxt-kql";
 
-import { Vue3SlideUpDown } from 'vue3-slide-up-down'
+import { Vue3SlideUpDown } from "vue3-slide-up-down";
 
 type Expand = {
-  title: string
-  layout: string // JSON
-}
+  title: string;
+  layout: string; // JSON
+};
 
 const props = defineProps<{
-  block: KirbyBlock<'carousel', Expand>
-}>()
+  block: KirbyBlock<"carousel", Expand>;
+}>();
 
-const layout = JSON.parse(props.block.content.layout) as KirbyLayout[]
+const layout = JSON.parse(props.block.content.layout) as KirbyLayout[];
 
-const open = ref(false)
+const open = ref(false);
 const onClick = () => {
-  open.value = !open.value
-}
+  open.value = !open.value;
+};
 </script>
 
 <template>

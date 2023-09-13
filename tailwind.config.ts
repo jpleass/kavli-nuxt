@@ -18,6 +18,7 @@ module.exports = {
       variants: ['sm', 'md', 'lg', 'xl'],
     },
   ],
+
   theme: {
     extend: {
       fontFamily: {
@@ -29,10 +30,15 @@ module.exports = {
       spacing: {
         linebreak: `calc(1em * ${lineHeight})`,
         em: '1em',
+        'em-half': '0.5em',
+        'em-2': '2em',
+        gap: '1.25em',
+        'gap-2': '2.5em',
       },
       colors: {
-        black: 'rgba(32, 32, 32, 1)',
-        'kavli-blue': 'rgba(225, 230, 242, 1)',
+        black: 'rgba(33, 34, 39, 1)',
+        'kavli-bg': 'rgba(225, 230, 242, 1)',
+        'kavli-blue': 'rgba(15, 98, 254, 1)',
       },
     },
   },
