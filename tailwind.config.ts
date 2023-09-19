@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 
-const lineHeight = 1.5
+const lineHeight = 1.4
 
 module.exports = {
   content: [

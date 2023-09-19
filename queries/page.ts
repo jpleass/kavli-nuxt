@@ -6,13 +6,17 @@ import type {
 import type { KirbyImageData } from './image'
 import { kirbyImageQuery } from './image'
 
-export interface KirbyPageData {
+export interface KirbyPageDataSlim {
   id: string
   uri: string
   title: string
   intendedTemplate: string
   children: KirbyPageData[]
   parent: Partial<KirbyPageData>
+  breadcrumb: Partial<KirbyPageData>
+}
+
+export interface KirbyPageData extends KirbyPageDataSlim {
   images: KirbyImageData[]
   layouts: KirbyLayout[]
 }
@@ -24,7 +28,7 @@ const childQuery: KirbyQuerySchema['select'] = {
   intendedTemplate: true,
 }
 
-export const pageQuery: KirbyQuerySchema['select'] = {
+export const pageQuerySlim: KirbyQuerySchema['select'] = {
   id: true,
   uri: true,
   title: true,
@@ -42,6 +46,10 @@ export const pageQuery: KirbyQuerySchema['select'] = {
       intendedTemplate: true,
     },
   },
+}
+
+export const pageQuery: KirbyQuerySchema['select'] = {
+  ...pageQuerySlim,
   images: {
     query: 'page.images',
     select: kirbyImageQuery,

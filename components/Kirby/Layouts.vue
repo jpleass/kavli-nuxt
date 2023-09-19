@@ -24,7 +24,7 @@ const getCols = (width: string) => {
     v-for="layout in layouts"
     :id="layout.id"
     :key="layout.id"
-    class="grid grid-cols-1 md:gap-gap-2 md:grid-cols-2"
+    class="grid grid-cols-1 md:gap-gap-2 md:grid-cols-2 md:mb-gap"
     :class="{
       'items-end': layout.attrs.align && layout.attrs.align === 'bottom',
       'items-center': layout.attrs.align && layout.attrs.align === 'center',

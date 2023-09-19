@@ -19,29 +19,32 @@ html {
 
 @layer components {
   h1 {
-    font-size: 5em;
+    font-size: 4.44em;
     line-height: 1.2;
     @apply font-bold;
   }
   h2 {
-    font-size: 4em;
+    font-size: 3.5em;
     line-height: 1.2;
     @apply font-bold;
   }
   h3 {
-    font-size: 3em;
+    font-size: 2.66em;
     line-height: 1.2;
-    @apply leading-tight font-bold;
+    @apply font-bold;
   }
   h4 {
-    font-size: 2.5em;
+    font-size: 1.77em;
     line-height: 1.2;
-    @apply leading-tight font-bold;
+    @apply font-bold;
   }
   h5 {
-    font-size: 2em;
+    font-size: 1.55em;
     line-height: 1.2;
-    @apply text-xl;
+  }
+  h6 {
+    font-size: 1.11em;
+    line-height: 1.2;
   }
   .caption {
     font-size: 0.9em;
@@ -61,7 +64,7 @@ html {
     @apply mb-0;
   }
   .body-text a {
-    @apply underline underline-offset-4 decoration-thonik-darkgrey;
+    @apply text-kavli-blue underline underline-offset-4 decoration-kavli-blue;
   }
   .video,
   .img {

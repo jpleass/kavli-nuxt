@@ -23,7 +23,7 @@ const site = useSite()
         v-for="page in site.navigationPages"
         :key="page.id"
         class="lowercase font-bold"
-        :to="page.uri"
+        :to="`/${page.uri}`"
       >
         {{ page.title }}
       </router-link>

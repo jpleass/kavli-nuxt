@@ -1,3 +1,3 @@
 <template>
-  <div class="h-em-2 mb-0"></div>
+  <div class="h-gap mb-0"></div>
 </template>

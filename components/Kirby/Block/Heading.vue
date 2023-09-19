@@ -1,14 +1,27 @@
 <script setup lang="ts">
-import slugify from '@sindresorhus/slugify'
 import type { KirbyBlock } from '#nuxt-kql'
+import type { LinkProps } from '~/queries/links'
+
+type CustomKirbyHeading = {
+  level: string
+  text: string
+  link?: LinkProps
+}
 
 defineProps<{
-  block: KirbyBlock<'heading'>
+  block: KirbyBlock<'heading', CustomKirbyHeading>
 }>()
 </script>
 
 <template>
-  <component :is="block.content.level" :id="slugify(block.content.text)">
-    <span v-html="block.content.text" />
-  </component>
+  <div class="flex justify-between items-end">
+    <component :is="block.content.level" class="w-full">
+      <span v-html="block.content.text" />
+    </component>
+    <div v-if="block.content.link" class="flex-shrink-0">
+      <UtilsLinkResolver v-slot="uiLinkProps" v-bind="block.content.link">
+        <UILink v-bind="uiLinkProps" />
+      </UtilsLinkResolver>
+    </div>
+  </div>
 </template>

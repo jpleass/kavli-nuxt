@@ -1,37 +1,30 @@
 <script lang="tsx" setup>
-export type LinkProps = {
-  type: 'page' | 'url' | 'email' | 'tel' | 'file'
-  value: string
+import type { LinkProps } from '~/queries/links'
+
+export type UILinkProps = {
+  url: string
   text: string
+  target: string
+  type: LinkProps['type']
+  icon?: Component
 }
 
-const props = defineProps<LinkProps>()
-const getTarget = (type: LinkProps['type']) => {
-  switch (type) {
-    case 'email':
-      return '_self'
-    case 'tel':
-      return '_self'
-    case 'page':
-      return '_self'
-    default:
-      return '_blank'
-  }
-}
+defineProps<UILinkProps>()
 </script>
 
 <template>
-  <div class="flex gap-em-half items-center">
-    <UIArrowContainer>
-      <SVGArrow />
-    </UIArrowContainer>
-    <div class="text-kavli-blue font-bold">
-      <UtilsLinkResolver v-slot="{ url }" v-bind="{ ...props }">
-        <NuxtLink v-if="url" :to="url" :target="getTarget(type)">
-          {{ text }}
-        </NuxtLink>
-        <div v-else v-html="text"></div>
-      </UtilsLinkResolver>
+  <NuxtLink :to="url" :target="target">
+    <div class="flex gap-em-half items-center">
+      <component :is="icon" v-if="icon" />
+      <div
+        :class="{
+          'font-bold text-kavli-blue':
+            type === 'url' || type === 'file' || type === 'page',
+          'underline underline-offset-4 decoration-kavli-bg': type === 'email',
+        }"
+        class="link"
+        v-html="text"
+      ></div>
     </div>
-  </div>
+  </NuxtLink>
 </template>

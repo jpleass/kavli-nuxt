@@ -1,14 +1,22 @@
 import type { KirbyQueryResponse, KirbyQuerySchema } from '#nuxt-kql'
-import type { KirbyPageData } from './page'
+import type { KirbyPageDataSlim } from './page'
 import { pageQuery } from './page'
+import type { LinkData } from './links'
 
 export interface KirbySiteData {
   title: string
   description: string
-  navigationPages: KirbyPageData[]
-  children: KirbyPageData[]
+  navigationPages: KirbyPageDataSlim[]
+  children: KirbyPageDataSlim[]
   footer: {
     copyright: string
+    links: { id: number; link: LinkData }[]
+    logos: { id: string; url: true }[]
+    contacts: { id: number; link: LinkData }[]
+    newsletter: {
+      text: string
+      url: string
+    }
   }
 }
 
@@ -28,8 +36,29 @@ export const siteQuery: KirbyQuerySchema = {
       select: pageQuery,
     },
     footer: {
+      query: 'site',
       select: {
-        copyright: 'site.footer_copyright.kt',
+        copyright: 'site.footer_copyright',
+        logos: {
+          query: 'site.footer_logos.toFiles',
+          select: {
+            id: true,
+            url: true,
+          },
+        },
+        contacts: {
+          query: 'site.footer_contacts.toStructure',
+        },
+        newsletter: {
+          query: 'site',
+          select: {
+            text: 'site.footer_newsletter_text',
+            url: 'site.footer_newsletter_url',
+          },
+        },
+        links: {
+          query: 'site.footer_links.toStructure',
+        },
       },
     },
   },

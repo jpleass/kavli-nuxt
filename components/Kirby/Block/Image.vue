@@ -1,13 +1,11 @@
-<script lang="ts">
+<script setup lang="ts">
 export interface KirbyImage {
   id: string
   uuid: string
   url: string
   alt: string | null
 }
-</script>
 
-<script setup lang="ts">
 import type { KirbyBlock } from '#nuxt-kql'
 
 const props = defineProps<{
@@ -34,12 +32,11 @@ const { width } = useElementSize(figure)
 
 <template>
   <figure ref="figure">
-    <component
-      :is="block.content.link ? 'a' : 'div'"
-      :href="block.content.link || undefined"
+    <div
       :data-contain="block.content.crop === false || undefined"
       :class="[ratio === 'auto' ? 'auto' : 'img']"
       :style="`--w: ${size.w}; --h: ${size.h};`"
+      class="rounded-xl overflow-hidden"
     >
       <img
         v-if="block.content.location === 'web'"
@@ -60,11 +57,11 @@ const { width } = useElementSize(figure)
           class="w-full"
         />
       </KirbyUuidResolver>
-    </component>
+    </div>
 
     <figcaption
       v-if="block.content.caption"
-      class="img-caption"
+      class="caption mt-em-half"
       v-html="block.content.caption"
     />
   </figure>

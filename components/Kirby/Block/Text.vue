@@ -7,5 +7,5 @@ defineProps<{
 </script>
 
 <template>
-  <div v-html="block.content.text" />
+  <div router-links class="body-text" v-html="block.content.text" />
 </template>

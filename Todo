@@ -3,21 +3,43 @@
 - [x] Add TailwindCSS
 - [x] Add IBM Plex Sans font
 - [x] Clean up boilerplate
-- [ ] Figure out error page
-- [ ] Typography
+- [x] Typography
 - [x] Bring over as much from Thonik site as possible
+- [ ] Figure out error page
 
 # Components
 
-- [ ] Primary/Secondary Button
-- [x] Link (External/Internal/Subheading)
-- [ ] Video
-- [ ] Section Header
-- [ ] Programma
+- [x] Section Header
+- [x] Link Resolver
+- [x] Cards Wrapper | 1-3 columns and rendering the correct card
 - [ ] General Card
+  - [x] Large Card
+  - [x] Small Card
+  - [ ] Image on these?
+- [x] Breadcrumbs
+- [x] Footer
+- [ ] Primary/Secondary Button
+- [ ] Video
+- [ ] Programma
+- [ ] Latest News
+- [ ] News Item
+- [ ] Event Item
 - [ ] Author Testimonial
-- [ ] Link list (2 column link list)
+- [x] Link (External/Internal/Subheading)
+- [x] Link list (2 column link list)
+
+# Links Resolver
+
+This takes LinkProps and spits out the correct link component.
+
+- Link with Arrow | Page Link & URL
+- Link with phone icon | Phone number
+- Link with mail icon | Mail address
 
 # Layouts
 
 - [x] Need different aligns.
+
+# Data
+
+- [ ] KirbyPageDataSlim should not be a thing
