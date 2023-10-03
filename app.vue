@@ -7,7 +7,7 @@
     </Head>
 
     <Body
-      class="antialiased text-black xl:text-lg lg:text-md 2xl:text-xl font-sans bg-kavli-bg"
+      class="antialiased text-black xl:text-md 2xl:text-lg 3xl:text-xl font-sans bg-kavli-bg"
     >
       <div class="flex flex-col min-h-screen">
         <AppHeader />

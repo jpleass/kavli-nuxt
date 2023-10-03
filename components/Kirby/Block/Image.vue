@@ -36,7 +36,6 @@ const { width } = useElementSize(figure)
       :data-contain="block.content.crop === false || undefined"
       :class="[ratio === 'auto' ? 'auto' : 'img']"
       :style="`--w: ${size.w}; --h: ${size.h};`"
-      class="rounded-xl overflow-hidden"
     >
       <img
         v-if="block.content.location === 'web'"

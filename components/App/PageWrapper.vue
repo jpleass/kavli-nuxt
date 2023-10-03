@@ -3,7 +3,7 @@
     <div class="absolute top-0">
       <slot name="breadcrumbs" />
     </div>
-    <div class="mt-gap-2">
+    <div class="my-gap-2 pb-gap-2">
       <slot name="content" />
     </div>
   </div>

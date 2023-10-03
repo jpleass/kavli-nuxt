@@ -12,6 +12,7 @@
 - [x] Section Header
 - [x] Link Resolver
 - [x] Cards Wrapper | 1-3 columns and rendering the correct card
+- [ ] News Card
 - [ ] General Card
   - [x] Large Card
   - [x] Small Card
@@ -22,19 +23,14 @@
 - [ ] Video
 - [ ] Programma
 - [ ] Latest News
-- [ ] News Item
 - [ ] Event Item
 - [ ] Author Testimonial
 - [x] Link (External/Internal/Subheading)
 - [x] Link list (2 column link list)
 
-# Links Resolver
+# Header
 
-This takes LinkProps and spits out the correct link component.
-
-- Link with Arrow | Page Link & URL
-- Link with phone icon | Phone number
-- Link with mail icon | Mail address
+- [ ] Should have scroll down state.
 
 # Layouts
 
@@ -43,3 +39,8 @@ This takes LinkProps and spits out the correct link component.
 # Data
 
 - [ ] KirbyPageDataSlim should not be a thing
+
+# APIs
+
+- [ ] Make a fake event API
+- [ ] Make a fake news API

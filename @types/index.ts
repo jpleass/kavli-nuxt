@@ -1,4 +1,5 @@
 import type { KirbyBlock } from '#nuxt-kql'
+import type { KirbyImageData } from '../queries/image'
 
 export interface CardProps {
   heading: string
@@ -6,4 +7,11 @@ export interface CardProps {
   text: string
   links: KirbyBlock[]
   style: 'default' | 'transparent'
+}
+
+export interface NewsPreviewProps {
+  heading: string
+  text: string
+  date: string
+  image?: KirbyImageData
 }

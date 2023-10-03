@@ -13,7 +13,7 @@ defineProps<UILinkProps>()
 </script>
 
 <template>
-  <NuxtLink :to="url" :target="target">
+  <NuxtLink class="group" :to="url" :target="target">
     <div class="flex gap-em-half items-center">
       <component :is="icon" v-if="icon" />
       <div

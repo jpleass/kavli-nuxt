@@ -40,6 +40,21 @@ module.exports = {
         'kavli-bg': 'rgba(225, 230, 242, 1)',
         'kavli-blue': 'rgba(15, 98, 254, 1)',
       },
+      animation: {
+        'horizontal-bounce': 'horizontal-bounce 0.5s ease-in-out',
+      },
+      keyframes: {
+        'horizontal-bounce': {
+          '0%, 100%': {
+            transform: 'translateX(0)',
+            animationTimingFunction: 'cubic-bezier(0.8, 0, 1, 1)',
+          },
+          '50%': {
+            transform: 'translateX(0.25em) ',
+            animationTimingFunction: 'cubic-bezier(0, 0, 0.2, 1)',
+          },
+        },
+      },
     },
   },
 }
