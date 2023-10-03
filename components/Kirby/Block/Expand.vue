@@ -37,7 +37,7 @@ const isPreviousExpand = computed(() => {
       @click="onClick"
     >
       <UILinkArrow
-        class="bg-white text-black"
+        class="bg-white text-black trasntiion-transform duration-300"
         :class="{
           'rotate-90': !open,
           '-rotate-90': open,
