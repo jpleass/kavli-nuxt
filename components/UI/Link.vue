@@ -15,7 +15,14 @@ defineProps<UILinkProps>()
 <template>
   <NuxtLink class="group" :to="url" :target="target">
     <div class="flex gap-em-half items-center">
-      <component :is="icon" v-if="icon" />
+      <component
+        :is="icon"
+        v-if="icon"
+        :class="{
+          'text-kavli-blue':
+            type === 'url' || type === 'file' || type === 'page',
+        }"
+      />
       <div
         :class="{
           'font-bold text-kavli-blue':

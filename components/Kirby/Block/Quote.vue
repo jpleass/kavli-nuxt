@@ -8,7 +8,6 @@ defineProps<{
 
 <template>
   <blockquote>
-    <div v-html="block.content.text" />
-    <footer v-html="block.content.citation" />
+    <h4 class="italic font-light" v-html="block.content.text" />
   </blockquote>
 </template>

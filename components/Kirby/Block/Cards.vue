@@ -31,7 +31,7 @@ const cols = computed(() => {
 </script>
 
 <template>
-  <div class="grid gap-gap-2 mb-gap-2" :class="cols">
+  <div class="grid md:gap-gap-2 gap-gap mb-gap-2" :class="cols">
     <KirbyBlockCard v-for="card in blocks" :key="card.id" :block="card" />
   </div>
 </template>

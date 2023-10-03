@@ -3,13 +3,8 @@ import type { KirbyBlock, KirbyLayout } from '#nuxt-kql'
 
 import { Vue3SlideUpDown } from 'vue3-slide-up-down'
 
-type Expand = {
-  title: string
-  layout: string // JSON
-}
-
 const props = defineProps<{
-  block: KirbyBlock<'expand', Expand>
+  block: KirbyBlock<'expand'>
 }>()
 
 const layout = JSON.parse(props.block.content.layout) as KirbyLayout[]
@@ -18,18 +13,38 @@ const open = ref(false)
 const onClick = () => {
   open.value = !open.value
 }
+
+const previousBlock = usePreviousBlock(props.block.id)
+const isPreviousExpand = computed(() => {
+  if (previousBlock) {
+    return previousBlock.type === 'expand'
+  } else {
+    return false
+  }
+})
 </script>
 
 <template>
-  <div>
+  <div
+    :class="{
+      '-mt-gap': isPreviousExpand,
+    }"
+  >
     <!-- Visible -->
 
     <div
-      class="flex gap-4 items-center mb-2 transition-opacity duration-100 cursor-pointer md:hover:opacity-50"
+      class="flex gap-4 items-center py-em transition-opacity duration-100 cursor-pointer group"
       @click="onClick"
     >
-      <div>Little arrow</div>
-      <h5 v-html="block.content.title"></h5>
+      <UILinkArrow
+        class="bg-white text-black"
+        :class="{
+          'rotate-90': !open,
+          '-rotate-90': open,
+        }"
+      />
+
+      <h5 class="font-bold" v-html="block.content.title"></h5>
     </div>
 
     <!-- Hidden -->
@@ -38,8 +53,7 @@ const onClick = () => {
         <KirbyLayouts :layouts="layout" />
       </div>
     </Vue3SlideUpDown>
-    <div class="mb-8">
-      <hr class="border-white" />
-    </div>
+
+    <hr class="border-white" />
   </div>
 </template>

@@ -5,7 +5,8 @@ export interface CardProps {
   heading: string
   subheading: string
   text: string
-  links: KirbyBlock[]
+  links: KirbyBlock<'link'>[]
+  image: KirbyBlock<'image'>[]
   style: 'default' | 'transparent'
 }
 

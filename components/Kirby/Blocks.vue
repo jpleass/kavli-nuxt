@@ -12,6 +12,7 @@ import {
   LazyKirbyBlockList,
   LazyKirbyBlockMultiLinks,
   LazyKirbyBlockQuote,
+  LazyKirbyBlockTestimonial,
   LazyKirbyBlockText,
   LazyKirbyBlockVideo,
 } from '#components'
@@ -38,6 +39,7 @@ const blockComponents: Record<string, Component> = {
   card: LazyKirbyBlockCard,
   video: LazyKirbyBlockVideo,
   cards: LazyKirbyBlockCards,
+  testimonial: LazyKirbyBlockTestimonial,
 }
 
 const doesComponentExist = (type: string) => {

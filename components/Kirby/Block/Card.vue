@@ -2,7 +2,10 @@
 import type { KirbyBlock } from '#nuxt-kql'
 import type { CardProps } from '~/@types'
 
-export type CardBlock = Omit<CardProps, 'links'> & { links: string }
+export type CardBlock = Omit<CardProps, 'links, image'> & {
+  links: string
+  image: string
+}
 
 const props = defineProps<{
   block: KirbyBlock<'card', CardBlock>
@@ -14,11 +17,14 @@ const cardProps = ref<CardProps>({
   text: props.block.content.text,
   style: props.block.content.style,
   links: [], // Can't parse links here, because it's not reactive.
+  image: [],
 })
 
 onMounted(() => {
   // Rendering fix.
-  cardProps.value.links = JSON.parse(props.block.content.links) as KirbyBlock[]
+  const { links, image } = props.block.content
+  if (links) cardProps.value.links = JSON.parse(links) as KirbyBlock<'link'>[]
+  if (image) cardProps.value.image = JSON.parse(image) as KirbyBlock<'image'>[]
 })
 </script>
 

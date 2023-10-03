@@ -28,6 +28,7 @@ const getCols = (width: string) => {
     :class="{
       'items-end': layout.attrs.align && layout.attrs.align === 'bottom',
       'items-center': layout.attrs.align && layout.attrs.align === 'center',
+      'px-[8.333%]': layout.attrs.padding === 'true',
     }"
   >
     <div
