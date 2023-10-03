@@ -22,15 +22,13 @@ const placeholderNewsItems = await generatePlaceholderNewsPreviewProps(10)
 
 <template>
   <AppPageWrapper v-if="page">
-    <template #content>
-      <KirbyLayouts v-if="page.layouts" :layouts="page.layouts ?? []" />
-      <div class="flex flex-col gap-gap mt-gap-2">
-        <AppCardsNewsCard
-          v-for="(placeholderNewsItem, i) in placeholderNewsItems"
-          :key="i"
-          v-bind="placeholderNewsItem"
-        />
-      </div>
-    </template>
+    <KirbyLayouts v-if="page.layouts" :layouts="page.layouts ?? []" />
+    <div class="flex flex-col gap-gap mt-gap-2">
+      <AppCardsNewsCard
+        v-for="(placeholderNewsItem, i) in placeholderNewsItems"
+        :key="i"
+        v-bind="placeholderNewsItem"
+      />
+    </div>
   </AppPageWrapper>
 </template>

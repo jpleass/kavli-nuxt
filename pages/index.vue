@@ -12,9 +12,9 @@ setPage(page)
 <template>
   <div>
     <!-- Body -->
-    <AppSection>
+    <AppPageWrapper v-if="page">
       <KirbyLayouts v-if="page && page.layouts" :layouts="page.layouts ?? []" />
-    </AppSection>
+    </AppPageWrapper>
   </div>
 </template>
 

@@ -23,8 +23,6 @@ setPage(page)
     <template #breadcrumbs>
       <AppBreadcrumbs />
     </template>
-    <template #content>
-      <KirbyLayouts v-if="page.layouts" :layouts="page.layouts ?? []" />
-    </template>
+    <KirbyLayouts v-if="page.layouts" :layouts="page.layouts ?? []" />
   </AppPageWrapper>
 </template>

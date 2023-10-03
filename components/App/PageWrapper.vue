@@ -4,7 +4,7 @@
       <slot name="breadcrumbs" />
     </div>
     <div class="my-gap-2 pb-gap-2">
-      <slot name="content" />
+      <slot name="default" />
     </div>
   </div>
 </template>
