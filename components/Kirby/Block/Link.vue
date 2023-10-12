@@ -1,14 +1,14 @@
 <script lang="tsx" setup>
-import type { KirbyBlock } from '#nuxt-kql'
-import type { LinkProps } from '~/queries/links'
+import type { KirbyBlock } from "#nuxt-kql";
+import type { LinkProps } from "~/queries/links";
 
 type LinkBlock = {
-  link: LinkProps
-}
+  link: LinkProps;
+};
 
 defineProps<{
-  block: KirbyBlock<'carousel', LinkBlock>
-}>()
+  block: KirbyBlock<"link", LinkBlock>;
+}>();
 </script>
 
 <template>

@@ -1,7 +1,7 @@
 import type { NewsPreviewProps } from '~/@types'
 import { type KirbyImageData, kirbyImageQuery } from '~/queries'
 import { LoremIpsum } from 'lorem-ipsum'
-import type { KirbyQueryResponse } from '#nuxt-kql'
+import type { KirbyBlock, KirbyQueryResponse } from '#nuxt-kql'
 
 export const generatePlaceholderText = (words: number): string => {
   const text = new LoremIpsum().generateWords(words)
@@ -9,7 +9,7 @@ export const generatePlaceholderText = (words: number): string => {
   return text.charAt(0).toUpperCase() + text.slice(1) + '.'
 }
 
-export const generatePlaceholderImageData = async () => {
+export const generatePlaceholderImageBlock = async () => {
   const { data: allImageData } = await useKql<
     KirbyQueryResponse<KirbyImageData[]>
   >({
@@ -18,11 +18,26 @@ export const generatePlaceholderImageData = async () => {
   })
 
   if (allImageData.value.result) {
-    const randomImage =
+    const randomImage: KirbyImageData =
       allImageData.value.result[
         Math.floor(Math.random() * allImageData.value.result.length)
       ]
-    return randomImage
+
+    const block: KirbyBlock<'image'> = {
+      id: randomImage.uuid,
+      isHidden: false,
+      type: 'image',
+      content: {
+        location: 'web',
+        image: [randomImage.uuid],
+        src: randomImage.src,
+        alt: randomImage.alt,
+        caption: randomImage.caption,
+        ratio: 'auto',
+        crop: false,
+      },
+    }
+    return block
   }
   return undefined
 }
@@ -32,12 +47,12 @@ export const generatePlaceholderNewsPreviewProps = async (
 ): Promise<NewsPreviewProps[]> => {
   const propsArray = await Promise.all(
     new Array(n).fill(null).map(async () => {
-      const image = await generatePlaceholderImageData()
+      const image = await generatePlaceholderImageBlock()
       return {
-        heading: generatePlaceholderText(5),
+        title: generatePlaceholderText(12),
         text: generatePlaceholderText(20),
         date: new Date().toDateString(),
-        image,
+        cover: image,
       }
     }),
   )

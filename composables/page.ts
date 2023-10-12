@@ -1,4 +1,7 @@
+import type { KirbyQueryResponse } from '#nuxt-kql'
 import { joinURL } from 'ufo'
+import type { KirbyErrorResponse } from '~/queries'
+import { getPageQuery } from '~/queries'
 
 /**
  * Returns the currently active page, similar to Kirby's `$page` global variable
@@ -68,4 +71,16 @@ function usePageState() {
     'app.state.page',
     () => 'pending',
   )
+}
+
+export const handlePageData = async <T extends KirbyQueryResponse>(data: T) => {
+  // If page content is empty, load the error page
+  if (!data?.result) {
+    const { data: errorPageData } = await useKql<KirbyErrorResponse>(
+      getPageQuery('error'),
+    )
+    setResponseStatus(useRequestEvent(), 404)
+    return errorPageData.value
+  }
+  return data
 }

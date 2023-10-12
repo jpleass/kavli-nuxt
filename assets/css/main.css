@@ -57,8 +57,11 @@ html {
   .link {
     @apply md:hover:text-gray-500 transition-colors;
   }
+  .body-text {
+    @apply leading-default;
+  }
   .body-text p {
-    @apply mb-linebreak leading-default;
+    @apply mb-linebreak;
   }
   .body-text p:last-of-type {
     @apply mb-0;

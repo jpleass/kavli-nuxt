@@ -6,39 +6,25 @@ defineProps<NewsPreviewProps>()
 
 <template>
   <div
-    class="rounded-xl border-2 overflow-hidden border-white flex md:flex-row flex-col justify-between items-stretch"
+    ref="el"
+    class="rounded-lg border-2 overflow-hidden bg-white flex md:flex-row flex-col justify-between items-stretch md:h-44 2xl:h-48"
   >
-    <div v-if="image" class="lg:w-1/6 md:w-1/4 w-full flex-shrink-0">
-      <KirbyBlockImage
-        :block="{
-          content: {
-            location: 'web',
-            image: [image.uuid],
-            src: image.src,
-            alt: image.alt,
-            caption: image.caption,
-            ratio: '1/1',
-            crop: true,
-          },
-          id: heading,
-          isHidden: false,
-          type: 'image',
-        }"
-      />
+    <div v-if="cover" class="md:w-48 md:h-full flex-shrink-0 relative">
+      <slot name="cover" />
     </div>
 
-    <div class="py-gap px-em h-auto w-full">
-      <div
-        class="flex flex-col items-start justify-between h-full max-w-[40em]"
-      >
-        <h6 class="font-bold" v-html="heading"></h6>
-        <div router-links class="body-text" v-html="text" />
-        <div class="small flex gap-em-half">
-          <span>
-            {{ date }}
-          </span>
-          <span>•</span>
-          <span>6 min read</span>
+    <div class="py-em px-em h-auto w-full">
+      <div class="flex flex-col h-full max-w-[40em]">
+        <h6 class="font-bold h-[2em] mb-[1em]" v-html="title" />
+        <div class="h-full flex justify-between flex-col">
+          <div router-links class="body-text line-clamp-2" v-html="text" />
+          <div class="small flex gap-em-half">
+            <span>
+              {{ date }}
+            </span>
+            <span>•</span>
+            <span>6 min read</span>
+          </div>
         </div>
       </div>
     </div>

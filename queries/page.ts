@@ -11,14 +11,16 @@ export interface KirbyPageDataSlim {
   uri: string
   title: string
   intendedTemplate: string
-  children: KirbyPageData[]
+  children: KirbyPageDataSlim[]
   parent: Partial<KirbyPageData>
-  breadcrumb: Partial<KirbyPageData>
+  // breadcrumb: Partial<KirbyPageData>
 }
 
-export interface KirbyPageData extends KirbyPageDataSlim {
-  images: KirbyImageData[]
-  layouts: KirbyLayout[]
+export type KirbyPageDataChild = {
+  id: string
+  uri: string
+  title: string
+  intendedTemplate: string
 }
 
 const childQuery: KirbyQuerySchema['select'] = {
@@ -26,6 +28,11 @@ const childQuery: KirbyQuerySchema['select'] = {
   uri: true,
   title: true,
   intendedTemplate: true,
+}
+
+export interface KirbyPageData extends KirbyPageDataSlim {
+  images: KirbyImageData[]
+  layouts: KirbyLayout[]
 }
 
 export const pageQuerySlim: KirbyQuerySchema['select'] = {
@@ -62,6 +69,14 @@ export type KirbyPageResponse = KirbyQueryResponse<KirbyPageData>
 export function getPageQuery(pageId: string): KirbyQuerySchema {
   return {
     query: `page("${pageId}")`,
+    select: pageQuery,
+  }
+}
+
+export type KirbyErrorResponse = KirbyQueryResponse<KirbyPageData>
+export function getErrorQuery(): KirbyQuerySchema {
+  return {
+    query: `page("error")`,
     select: pageQuery,
   }
 }

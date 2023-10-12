@@ -1,34 +1,38 @@
 <script setup lang="ts">
-import { getPageQuery } from '~/queries'
+import type { KirbyNewsResponse } from '~/queries/news'
+import { getNewsQuery } from '~/queries/news'
 
-const kirbyPath = useRoute().path
-const { data: pageData } = await useKql(getPageQuery(kirbyPath))
+const query = getNewsQuery()
+const { data: pageData } = await useKql<KirbyNewsResponse>(query)
 
-let data = pageData.value
-
-// If page content is empty, load the error page
-if (!data?.result) {
-  const { data: pageData } = await useKql(getPageQuery('error'))
-  data = pageData.value
-  setResponseStatus(useRequestEvent(), 404)
-}
-
+const data = pageData?.value
 // Set the current page data for the global page context
 const page = data?.result
 setPage(page)
 
-const placeholderNewsItems = await generatePlaceholderNewsPreviewProps(10)
+// const placeholderNewsItems = await generatePlaceholderNewsPreviewProps(10)
 </script>
 
 <template>
   <AppPageWrapper v-if="page">
     <KirbyLayouts v-if="page.layouts" :layouts="page.layouts ?? []" />
     <div class="flex flex-col gap-gap mt-gap-2">
-      <AppCardsNewsCard
-        v-for="(placeholderNewsItem, i) in placeholderNewsItems"
+      <NuxtLink
+        v-for="(newsItem, i) in page.children"
         :key="i"
-        v-bind="placeholderNewsItem"
-      />
+        :to="`/${newsItem.uri}`"
+      >
+        <AppCardsNewsCard v-bind="newsItem">
+          <template #cover>
+            <KirbyBlockImage
+              v-if="newsItem"
+              :block="newsItem.cover"
+              :fill="true"
+              :collection="newsItem.images"
+            />
+          </template>
+        </AppCardsNewsCard>
+      </NuxtLink>
     </div>
   </AppPageWrapper>
 </template>

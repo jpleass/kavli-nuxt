@@ -16,8 +16,10 @@ const imageData = ref<KirbyImageData>({
   width: 0,
   height: 0,
 })
+
 const page = usePage()
 const images = page.value.images
+
 const image = computed<KirbyImageData>(() => {
   return images.find(
     (image: KirbyImageData) => image.uuid === props.block.content.image?.[0],

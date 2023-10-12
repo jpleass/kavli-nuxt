@@ -7,15 +7,18 @@ export interface KirbyImage {
 }
 
 import type { KirbyBlock } from '#nuxt-kql'
+import type { KirbyImageData } from '~/queries'
 
 const props = defineProps<{
   block: KirbyBlock<'image'>
+  fill?: boolean
+  collection?: KirbyImageData[]
 }>()
 
 const page = usePage()
 
 // Use static data to avoid reactivity when redirecting to another page
-const images = page.value.images
+const images = props.collection || page.value.images
 
 const ratio = props.block.content.ratio || 'auto'
 let size: { w?: string; h?: string } = {}
@@ -31,16 +34,29 @@ const { width } = useElementSize(figure)
 </script>
 
 <template>
-  <figure ref="figure">
+  <figure
+    ref="figure"
+    :class="{
+      'w-full h-full': props.fill,
+    }"
+  >
     <div
       :data-contain="block.content.crop === false || undefined"
-      :class="[ratio === 'auto' ? 'auto' : 'img']"
+      :class="{
+        auto: ratio === 'auto',
+        img: ratio !== 'auto',
+        'w-full h-full': props.fill,
+      }"
       :style="`--w: ${size.w}; --h: ${size.h};`"
     >
       <img
         v-if="block.content.location === 'web'"
         :src="block.content.src"
         :alt="block.content.alt"
+        class="w-full"
+        :class="{
+          'w-full h-full object-cover': props.fill,
+        }"
       />
       <KirbyUuidResolver
         v-else
@@ -54,6 +70,9 @@ const { width } = useElementSize(figure)
           :sizes="`${width}px`"
           :alt="image.alt"
           class="w-full"
+          :class="{
+            'w-full h-full object-cover': props.fill,
+          }"
         />
       </KirbyUuidResolver>
     </div>

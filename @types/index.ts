@@ -1,5 +1,4 @@
 import type { KirbyBlock } from '#nuxt-kql'
-import type { KirbyImageData } from '../queries/image'
 
 export interface CardProps {
   heading: string
@@ -11,8 +10,8 @@ export interface CardProps {
 }
 
 export interface NewsPreviewProps {
-  heading: string
+  title: string
   text: string
   date: string
-  image?: KirbyImageData
+  cover?: KirbyBlock<'image'>
 }

@@ -12,19 +12,21 @@
 - [x] Section Header
 - [x] Link Resolver
 - [x] Cards Wrapper | 1-3 columns and rendering the correct card
-- [ ] News Card
-- [ ] General Card
+- [x] News Card
+- [x] General Card
   - [x] Large Card
   - [x] Small Card
   - [x] Image on these?
 - [x] Breadcrumbs
 - [x] Footer
+
 - [ ] Primary/Secondary Button
 - [ ] Video
 - [ ] Programma
 - [ ] Latest News
 - [ ] Event Item
-- [ ] Author Testimonial
+- [x] Author Testimonial
+
 - [x] Link (External/Internal/Subheading)
 - [x] Link list (2 column link list)
 
@@ -44,3 +46,13 @@
 
 - [ ] Make a fake event API
 - [ ] Make a fake news API
+
+# News
+
+- [ ] CMS System.
+- [ ] News Card.
+- [ ] Categories.
+- [ ] Pagination.
+- [ ] Share.
+
+# Events
