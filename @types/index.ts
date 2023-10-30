@@ -14,4 +14,13 @@ export interface NewsPreviewProps {
   text: string
   date: string
   cover?: KirbyBlock<'image'>
+  timeToRead?: number
+}
+
+export type PaginationState = {
+  page: number
+  pages: number
+  offset: number
+  limit: number
+  total: number
 }

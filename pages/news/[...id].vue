@@ -21,20 +21,51 @@ setPage(page)
         <div class="mb-gap">
           <AppBreadcrumbs />
         </div>
-        <div class="sticky top-gap-2">
+        <div class="sticky top-24">
           <h4 class="" v-html="page.title" />
           <div class="small mt-gap" v-html="page.date"></div>
           <div class="mt-gap-2 small flex gap-em items-center">
             <div class="leading-tight">Share this<br />page on:</div>
-            <div class="icon-wrapper">
-              <SVGEmail />
-            </div>
-            <div class="icon-wrapper">
-              <SVGEmail />
-            </div>
-            <div class="icon-wrapper">
-              <SVGEmail />
-            </div>
+
+            <ClientOnly>
+              <ShareNetwork
+                network="twitter"
+                :url="page.url"
+                :title="page.title"
+                :description="page.text"
+                :quote="page.text"
+              >
+                <div class="icon-wrapper">
+                  <img class="h-full" src="~/assets/icons/x.svg" />
+                </div>
+              </ShareNetwork>
+            </ClientOnly>
+
+            <ClientOnly>
+              <ShareNetwork
+                network="facebook"
+                :url="page.url"
+                :title="page.title"
+                :description="page.text"
+                :quote="page.text"
+              >
+                <div class="icon-wrapper">
+                  <img class="h-full" src="~/assets/icons/facebook.svg" />
+                </div>
+              </ShareNetwork>
+            </ClientOnly>
+
+            <ClientOnly>
+              <ShareNetwork
+                network="linkedIn"
+                :title="page.title"
+                :url="page.url"
+              >
+                <div class="icon-wrapper">
+                  <img class="h-full" src="~/assets/icons/linkedin.svg" />
+                </div>
+              </ShareNetwork>
+            </ClientOnly>
           </div>
         </div>
       </div>
@@ -50,6 +81,6 @@ setPage(page)
 
 <style lang="postcss" scoped>
 .icon-wrapper {
-  @apply w-10 h-10 bg-white rounded-md flex items-center justify-center p-2;
+  @apply w-10 h-10 bg-white rounded-md flex items-center justify-center p-2 relative;
 }
 </style>

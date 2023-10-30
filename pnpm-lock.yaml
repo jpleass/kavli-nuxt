@@ -14,6 +14,9 @@ dependencies:
   tailwindcss:
     specifier: ^3.3.3
     version: 3.3.3
+  vue-social-sharing:
+    specifier: 4.0.0-alpha4
+    version: 4.0.0-alpha4
   vue3-slide-up-down:
     specifier: ^2.0.1
     version: 2.0.1
@@ -6038,6 +6041,15 @@ packages:
       '@vue/devtools-api': 6.5.0
       vue: 3.3.4
     dev: true
+
+  /vue-social-sharing@4.0.0-alpha4:
+    resolution: {integrity: sha512-hMbgpZkY5aRAiznSB/sgzdMVgdSbkmIHEaELX7pUbuUd6KS1Z/GAi7a/q0Qn+GFn0+6qMMvwyp3ZOE0+WYPQ1w==}
+    peerDependencies:
+      vue: ^3.0.0
+    peerDependenciesMeta:
+      vue:
+        optional: true
+    dev: false
 
   /vue-template-compiler@2.7.14:
     resolution: {integrity: sha512-zyA5Y3ArvVG0NacJDkkzJuPQDF8RFeRlzV2vLeSnhSpieO6LK2OVbdLPi5MPPs09Ii+gMO8nY4S3iKQxBxDmWQ==}

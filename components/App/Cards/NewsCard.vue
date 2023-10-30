@@ -19,11 +19,9 @@ defineProps<NewsPreviewProps>()
         <div class="h-full flex justify-between flex-col">
           <div router-links class="body-text line-clamp-2" v-html="text" />
           <div class="small flex gap-em-half">
-            <span>
-              {{ date }}
-            </span>
+            <span v-html="date" />
             <span>•</span>
-            <span>6 min read</span>
+            <span v-if="timeToRead" v-html="timeToRead + ' min read'"></span>
           </div>
         </div>
       </div>

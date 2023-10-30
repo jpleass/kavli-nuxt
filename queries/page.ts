@@ -9,6 +9,7 @@ import { kirbyImageQuery } from './image'
 export interface KirbyPageDataSlim {
   id: string
   uri: string
+  url: string
   title: string
   intendedTemplate: string
   children: KirbyPageDataSlim[]
@@ -38,6 +39,7 @@ export interface KirbyPageData extends KirbyPageDataSlim {
 export const pageQuerySlim: KirbyQuerySchema['select'] = {
   id: true,
   uri: true,
+  url: true,
   title: true,
   intendedTemplate: true,
   children: {

@@ -1,5 +1,6 @@
 import type {
   KirbyBlock,
+  KirbyQueryRequest,
   KirbyQueryResponse,
   KirbyQuerySchema,
 } from '#nuxt-kql'
@@ -12,31 +13,32 @@ export interface KirbyNewsPagePreviewData extends KirbyPageData {
   text: string
 }
 const newsPagePreviewQuery: KirbyQuerySchema['select'] = {
-  date: 'page.date.toDate("D M m Y")',
+  date: 'page.date.toDate("D M m, Y")',
   text: 'page.text.kt',
   cover: 'page.cover.toBlocks.first',
 }
 
-export interface KirbyNewsData extends KirbyPageData {
-  children: KirbyNewsPagePreviewData[]
-}
-
 export type KirbyNewsPageData = KirbyNewsPagePreviewData & KirbyPageData
-
-export const newsQuery: KirbyQuerySchema['select'] = {
-  ...pageQuery,
-  children: {
-    query: 'page.children',
-    select: { ...newsPagePreviewQuery, ...pageQuery },
-  },
+export type KirbyNewsResponse = KirbyQueryResponse<KirbyPageData>
+export type KirbyNewsItemsResponse =
+  KirbyQueryResponse<KirbyNewsPagePreviewData>
+export const getNewsItemsQuery = (
+  limit: number,
+  page: number,
+): KirbyQueryRequest => {
+  return {
+    query: 'page("news").children.listed',
+    select: { ...pageQuery, ...newsPagePreviewQuery },
+    pagination: { limit, page },
+  }
 }
 
-export type KirbyNewsResponse = KirbyQueryResponse<KirbyNewsData>
-
-export const getNewsQuery = (): KirbyQuerySchema => {
+export const getNewsQuery = (): KirbyQueryRequest => {
   return {
     query: 'page("news")',
-    select: newsQuery,
+    select: {
+      ...pageQuery,
+    },
   }
 }
 

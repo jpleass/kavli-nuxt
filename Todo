@@ -20,10 +20,10 @@
 - [x] Breadcrumbs
 - [x] Footer
 
+- [ ] Latest News
 - [ ] Primary/Secondary Button
 - [ ] Video
 - [ ] Programma
-- [ ] Latest News
 - [ ] Event Item
 - [x] Author Testimonial
 
@@ -32,7 +32,7 @@
 
 # Header
 
-- [ ] Should have scroll down state.
+- [x] Should have scroll down state.
 
 # Layouts
 
@@ -42,17 +42,12 @@
 
 - [ ] KirbyPageDataSlim should not be a thing
 
-# APIs
-
-- [ ] Make a fake event API
-- [ ] Make a fake news API
-
 # News
 
-- [ ] CMS System.
-- [ ] News Card.
-- [ ] Categories.
-- [ ] Pagination.
-- [ ] Share.
+- [x] CMS System.
+- [x] News Card.
+- [x] Categories.
+- [x] Pagination.
+- [x] Share.
 
 # Events
