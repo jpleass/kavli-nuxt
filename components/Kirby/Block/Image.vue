@@ -13,8 +13,10 @@ const props = defineProps<{
   block: KirbyBlock<'image'>
   fill?: boolean
   collection?: KirbyImageData[]
+  caption?: boolean
 }>()
 
+const hasCaption = props.caption !== false
 const page = usePage()
 
 // Use static data to avoid reactivity when redirecting to another page
@@ -78,7 +80,7 @@ const { width } = useElementSize(figure)
     </div>
 
     <figcaption
-      v-if="block.content.caption"
+      v-if="block.content.caption && hasCaption"
       class="caption mt-em-half"
       v-html="block.content.caption"
     />

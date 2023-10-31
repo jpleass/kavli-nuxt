@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+import Color from 'color'
 
 const lineHeight = 1.4
 
@@ -23,6 +24,7 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ['IBM Plex Sans', 'Helvetica', 'sans-serif'],
+        symbols: ['Material Symbols Rounded'],
       },
       lineHeight: {
         default: lineHeight,
@@ -39,6 +41,8 @@ module.exports = {
         black: 'rgba(33, 34, 39, 1)',
         'kavli-bg': 'rgba(225, 230, 242, 1)',
         'kavli-blue': 'rgba(15, 98, 254, 1)',
+        'kavli-peach': '#FFBD8D',
+        'kavli-peach-dark': Color('#FFBD8D').darken(0.1).hex(),
       },
       animation: {
         'horizontal-bounce': 'horizontal-bounce 0.5s ease-in-out',

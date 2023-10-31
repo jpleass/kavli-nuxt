@@ -16,71 +16,23 @@ setPage(page)
 
 <template>
   <AppPageWrapper v-if="page">
-    <div class="grid grid-cols-12 grid-gap">
-      <div class="col-span-5">
+    <AppPageWrapper2Columns>
+      <template #left>
         <div class="mb-gap">
           <AppBreadcrumbs />
         </div>
         <div class="sticky top-24">
           <h4 class="" v-html="page.title" />
           <div class="small mt-gap" v-html="page.date"></div>
-          <div class="mt-gap-2 small flex gap-em items-center">
-            <div class="leading-tight">Share this<br />page on:</div>
-
-            <ClientOnly>
-              <ShareNetwork
-                network="twitter"
-                :url="page.url"
-                :title="page.title"
-                :description="page.text"
-                :quote="page.text"
-              >
-                <div class="icon-wrapper">
-                  <img class="h-full" src="~/assets/icons/x.svg" />
-                </div>
-              </ShareNetwork>
-            </ClientOnly>
-
-            <ClientOnly>
-              <ShareNetwork
-                network="facebook"
-                :url="page.url"
-                :title="page.title"
-                :description="page.text"
-                :quote="page.text"
-              >
-                <div class="icon-wrapper">
-                  <img class="h-full" src="~/assets/icons/facebook.svg" />
-                </div>
-              </ShareNetwork>
-            </ClientOnly>
-
-            <ClientOnly>
-              <ShareNetwork
-                network="linkedIn"
-                :title="page.title"
-                :url="page.url"
-              >
-                <div class="icon-wrapper">
-                  <img class="h-full" src="~/assets/icons/linkedin.svg" />
-                </div>
-              </ShareNetwork>
-            </ClientOnly>
-          </div>
+          <AppSocialShare class="mt-gap-2 pb-gap" />
         </div>
-      </div>
-      <div class="col-span-6">
+      </template>
+      <template #right>
         <div class="mb-gap-2">
           <KirbyBlockImage :block="page.cover" />
         </div>
         <KirbyLayouts v-if="page.layouts" :layouts="page.layouts ?? []" />
-      </div>
-    </div>
+      </template>
+    </AppPageWrapper2Columns>
   </AppPageWrapper>
 </template>
-
-<style lang="postcss" scoped>
-.icon-wrapper {
-  @apply w-10 h-10 bg-white rounded-md flex items-center justify-center p-2 relative;
-}
-</style>

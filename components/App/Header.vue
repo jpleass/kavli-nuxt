@@ -3,15 +3,17 @@ const site = useSite()
 
 const isPartiallyHidden = ref(false)
 
-let lastScrollY = 0
+// const lastScrollY = 0
 const handleScroll = () => {
-  if (window.scrollY < 50) {
+  if (window.scrollY < 30) {
     isPartiallyHidden.value = false
     return
+  } else {
+    isPartiallyHidden.value = true
   }
-  const currentScrollY = window.scrollY
-  isPartiallyHidden.value = currentScrollY > lastScrollY
-  lastScrollY = currentScrollY
+  // const currentScrollY = window.scrollY
+  // isPartiallyHidden.value = currentScrollY > lastScrollY
+  // lastScrollY = currentScrollY
 }
 
 onMounted(() => {
@@ -25,14 +27,18 @@ onUnmounted(() => {
 
 <template>
   <header
-    class="fixed top-0 left-0 flex w-full justify-between mb-gap-2 px-gap py-2 z-10"
+    class="fixed top-0 left-0 flex w-full justify-between mb-gap-2 px-gap py-2 z-10 transition-all duration-150 overflow-x-hidden"
+    :class="{
+      'bg-white shadow-md': isPartiallyHidden,
+      'bg-transparent shadow-none': !isPartiallyHidden,
+    }"
   >
     <NuxtLink class="link" to="/">
       <div class="flex items-center gap-4 relative">
         <div
           class="transition-all duration-300"
           :class="{
-            'w-[5em]': isPartiallyHidden,
+            'w-[4em]': isPartiallyHidden,
             'w-[9em]': !isPartiallyHidden,
           }"
         >
@@ -51,7 +57,7 @@ onUnmounted(() => {
       </div>
     </NuxtLink>
 
-    <nav class="flex md:gap-gap-2 gap-gap items-center">
+    <nav class="flex md:gap-em-2 gap-gap items-center">
       <nuxt-link
         v-for="page in site.navigationPages"
         :key="page.id"

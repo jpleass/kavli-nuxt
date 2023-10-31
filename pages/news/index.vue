@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import type { KirbyPageResponse } from '~/queries'
+import { type KirbyPageResponse, getPageQuery } from '~/queries'
 import type { KirbyNewsPagePreviewData } from '~/queries/news'
 
-import { getNewsItemsQuery, getNewsQuery } from '~/queries/news'
+import { getNewsItemsQuery } from '~/queries/news'
 
-const query = getNewsQuery()
+const query = getPageQuery('news')
 const { data: pageData } = await useKql<KirbyPageResponse>(query)
 // Set the current page data for the global page context
 const page = pageData?.value?.result
@@ -20,14 +20,13 @@ const loadPaginationData = async () => {
 onMounted(() => {
   loadPaginationData()
 })
-
-// const placeholderNewsItems = await generatePlaceholderNewsPreviewProps(10)
 </script>
 
 <template>
   <AppPageWrapper v-if="page">
     <KirbyLayouts v-if="page.layouts" :layouts="page.layouts ?? []" />
-    <div class="flex flex-col gap-gap mt-gap-2">
+
+    <div class="flex flex-col gap-gap mt-gap-2 pt-gap-2">
       <NuxtLink
         v-for="(newsItem, i) in newsItems"
         :key="i"
@@ -53,6 +52,8 @@ onMounted(() => {
         </AppCardsNewsCard>
       </NuxtLink>
     </div>
+
+    <!-- Pagination -->
     <div
       v-if="paginationState && paginationState.page < paginationState.pages"
       class="flex items-center justify-center mt-gap-2"

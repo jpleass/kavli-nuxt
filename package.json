@@ -44,6 +44,8 @@
     }
   },
   "dependencies": {
+    "@types/color": "^3.0.5",
+    "color": "^4.2.3",
     "lorem-ipsum": "^2.0.8",
     "plyr": "^3.7.8",
     "tailwindcss": "^3.3.3",

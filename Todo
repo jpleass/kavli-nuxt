@@ -5,6 +5,7 @@
 - [x] Clean up boilerplate
 - [x] Typography
 - [x] Bring over as much from Thonik site as possible
+- [x] Events
 - [ ] Figure out error page
 
 # Components
@@ -17,14 +18,14 @@
   - [x] Large Card
   - [x] Small Card
   - [x] Image on these?
-- [x] Breadcrumbs
-- [x] Footer
+- [x] Breadcrumbs (not working properly)
+- [ ] Footer
 
-- [ ] Latest News
-- [ ] Primary/Secondary Button
+- [x] Latest News
+- [x] Primary/Secondary Button
 - [ ] Video
-- [ ] Programma
-- [ ] Event Item
+- [x] Programma
+- [x] Event Item
 - [x] Author Testimonial
 
 - [x] Link (External/Internal/Subheading)
@@ -38,10 +39,6 @@
 
 - [x] Need different aligns.
 
-# Data
-
-- [ ] KirbyPageDataSlim should not be a thing
-
 # News
 
 - [x] CMS System.
@@ -49,5 +46,3 @@
 - [x] Categories.
 - [x] Pagination.
 - [x] Share.
-
-# Events

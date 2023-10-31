@@ -14,7 +14,6 @@ export interface KirbyPageDataSlim {
   intendedTemplate: string
   children: KirbyPageDataSlim[]
   parent: Partial<KirbyPageData>
-  // breadcrumb: Partial<KirbyPageData>
 }
 
 export type KirbyPageDataChild = {

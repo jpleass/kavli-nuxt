@@ -4,6 +4,7 @@ import type {
   KirbyQueryResponse,
   KirbyQuerySchema,
 } from '#nuxt-kql'
+import { generateQuery } from '.'
 import type { KirbyPageData } from './page'
 import { pageQuery } from './page'
 
@@ -12,40 +13,32 @@ export interface KirbyNewsPagePreviewData extends KirbyPageData {
   cover: KirbyBlock<'image'>
   text: string
 }
-const newsPagePreviewQuery: KirbyQuerySchema['select'] = {
+
+const newsPageQuery: KirbyQuerySchema['select'] = {
   date: 'page.date.toDate("D M m, Y")',
   text: 'page.text.kt',
   cover: 'page.cover.toBlocks.first',
 }
 
-export type KirbyNewsPageData = KirbyNewsPagePreviewData & KirbyPageData
-export type KirbyNewsResponse = KirbyQueryResponse<KirbyPageData>
-export type KirbyNewsItemsResponse =
-  KirbyQueryResponse<KirbyNewsPagePreviewData>
 export const getNewsItemsQuery = (
   limit: number,
   page: number,
-): KirbyQueryRequest => {
-  return {
-    query: 'page("news").children.listed',
-    select: { ...pageQuery, ...newsPagePreviewQuery },
-    pagination: { limit, page },
-  }
-}
+): KirbyQueryRequest =>
+  generateQuery(
+    'page("news").children.listed',
+    { ...pageQuery, ...newsPageQuery },
+    limit,
+    page,
+  )
 
-export const getNewsQuery = (): KirbyQueryRequest => {
-  return {
-    query: 'page("news")',
-    select: {
-      ...pageQuery,
-    },
-  }
-}
+export const getLatestNewsQuery = (pageId: string): KirbyQuerySchema =>
+  generateQuery(`page("${pageId}").latestNews`, {
+    ...pageQuery,
+    ...newsPageQuery,
+  })
 
+export type KirbyNewsPageData = KirbyNewsPagePreviewData
 export type KirbyNewsPageResponse = KirbyQueryResponse<KirbyNewsPageData>
-export const getNewsPageQuery = (pageId: string): KirbyQuerySchema => {
-  return {
-    query: `page("${pageId}")`,
-    select: { ...pageQuery, ...newsPagePreviewQuery },
-  }
-}
+
+export const getNewsPageQuery = (pageId: string): KirbyQuerySchema =>
+  generateQuery(`page("${pageId}")`, { ...pageQuery, ...newsPageQuery })

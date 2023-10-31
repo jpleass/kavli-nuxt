@@ -12,7 +12,7 @@ const footerContacts = computed(
 </script>
 
 <template>
-  <footer class="mx-gap-2 mb-gap">
+  <footer class="mx-gap-2 mb-gap overflow-hidden">
     <div
       class="bg-white rounded-lg w-full p-gap flex flex-row justify-between items-center"
     >
