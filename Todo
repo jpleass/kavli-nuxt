@@ -1,48 +1,21 @@
 # General
 
-- [x] Add TailwindCSS
-- [x] Add IBM Plex Sans font
-- [x] Clean up boilerplate
-- [x] Typography
-- [x] Bring over as much from Thonik site as possible
-- [x] Events
+- [x] Home page
+- [x] Event component
+- [x] Home latest event compact.
+- [x] Footer
+
+- [x] Mobile Header
+- [ ] Community page
+- [ ] Community Item
+- [ ] SEO
+- [ ] Page transition
 - [ ] Figure out error page
+
+# Bugs
+
+- [ ] Cover image needs looking at for cards.
 
 # Components
 
-- [x] Section Header
-- [x] Link Resolver
-- [x] Cards Wrapper | 1-3 columns and rendering the correct card
-- [x] News Card
-- [x] General Card
-  - [x] Large Card
-  - [x] Small Card
-  - [x] Image on these?
-- [x] Breadcrumbs (not working properly)
-- [ ] Footer
-
-- [x] Latest News
-- [x] Primary/Secondary Button
 - [ ] Video
-- [x] Programma
-- [x] Event Item
-- [x] Author Testimonial
-
-- [x] Link (External/Internal/Subheading)
-- [x] Link list (2 column link list)
-
-# Header
-
-- [x] Should have scroll down state.
-
-# Layouts
-
-- [x] Need different aligns.
-
-# News
-
-- [x] CMS System.
-- [x] News Card.
-- [x] Categories.
-- [x] Pagination.
-- [x] Share.

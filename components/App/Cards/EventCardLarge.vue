@@ -13,39 +13,36 @@ const handleClick = () => {
 <template>
   <div
     ref="el"
-    class="rounded-lg border-2 overflow-hidden bg-white md:hover:bg-[#efefef] group transition-colors flex md:flex-row flex-col justify-between items-stretch md:min-h-44 2xl:min-h-48"
+    class="rounded-lg border-2 overflow-hidden bg-kavli-peach group md:hover:bg-kavli-peach-dark transition-colors flex md:flex-row flex-col justify-between items-stretch"
   >
-    <div
-      v-if="cover"
-      class="md:h-44 2xl:h-48 2xl:w-48 md:w-44 flex-shrink-0 relative group-hover:md:w-48 transition-all"
-    >
+    <div v-if="cover" class="flex-shrink-0 relative">
       <slot name="cover" />
     </div>
 
     <div class="py-em px-em h-auto w-full flex justify-between">
-      <div class="flex flex-col items-start h-full max-w-[40em]">
+      <div class="flex flex-col items-start h-full pr-gap">
         <div
           v-if="type"
-          class="small bg-kavli-bg px-3 py-2 rounded mb-em min-w-[7em] text-center"
+          class="small bg-white px-3 py-2 rounded mb-em text-center"
           v-html="type"
         ></div>
-        <h6 class="font-bold mb-1" v-html="heading || title" />
-        <h6 v-if="subheading" class="italic" v-html="subheading" />
+        <h4 class="font-bold mb-1" v-html="heading || title" />
+        <h4 v-if="subheading" class="italic font-normal" v-html="subheading" />
       </div>
 
       <div
-        class="flex flex-col justify-between items-start h-full pr-em min-w-44"
+        class="flex flex-col justify-between items-start h-full pr-em w-[12em]"
       >
         <div class="flex flex-col gap-1">
           <div class="flex gap-2">
             <div class="font-symbols">calendar_month</div>
-            <div class="small">
+            <div class="caption">
               <UtilsDates :dates="dates" />
             </div>
           </div>
           <div class="flex gap-1 mt-1">
             <div class="font-symbols">location_on</div>
-            <div class="small pt-1" v-html="location"></div>
+            <div class="caption pt-1" v-html="location"></div>
           </div>
         </div>
 
@@ -53,10 +50,12 @@ const handleClick = () => {
           v-if="!isPast && registerLink"
           :href="registerLink"
           target="_blank"
-          class="mt-gap"
+          class="mt-gap text-center w-full"
           @click.prevent="handleClick"
         >
-          <UIButton :type="'primary'">Register</UIButton>
+          <UIButton :type="'primary'" class="bg-white md:hover:bg-kavli-bg"
+            >Register</UIButton
+          >
         </a>
       </div>
     </div>

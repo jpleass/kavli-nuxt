@@ -1,9 +1,26 @@
 <script lang="tsx" setup>
+import type { KirbyBlock } from '#nuxt-kql'
 import type { KirbyNewsPagePreviewData } from '~/queries/news'
-import { getLatestNewsQuery } from '~/queries/news'
+import { getLatestNewsQuery, getNewsItemsQuery } from '~/queries/news'
+
+export type News = {
+  isLocal: boolean
+  page: string[] // UUID array
+  limit: number
+}
+
+const props = defineProps<{
+  block: KirbyBlock<'news', News>
+}>()
 
 const page = usePage()
-const query = getLatestNewsQuery(page.value.id)
+const pageID = props.block.content.page?.length
+  ? props.block.content.page[0]
+  : page.value.id
+
+const query = props.block.content.isLocal
+  ? getLatestNewsQuery(pageID, props.block.content.limit)
+  : getNewsItemsQuery(props.block.content.limit, 0)
 const { data: pageData } = await useKql(query)
 
 const newsItems = ref<KirbyNewsPagePreviewData[]>(pageData.value.result)

@@ -13,7 +13,7 @@
         <AppHeader />
 
         <div class="relative flex-1">
-          <main class="main pt-32">
+          <main class="main">
             <NuxtPage />
           </main>
         </div>

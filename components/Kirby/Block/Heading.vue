@@ -14,7 +14,12 @@ defineProps<{
 </script>
 
 <template>
-  <div class="flex justify-between items-end">
+  <div
+    class="flex justify-between items-end"
+    :class="{
+      'pb-em': block.content.link,
+    }"
+  >
     <component :is="block.content.level" class="w-full">
       <span v-html="block.content.text" />
     </component>

@@ -1,4 +1,5 @@
 import type { KirbyBlock } from '#nuxt-kql'
+import type { KirbyEventPagePreviewData } from '../queries/events'
 
 export type KirbyEventDate = {
   start: string
@@ -16,6 +17,16 @@ export const convertDateBlocksToEventDates = (
   })
 }
 
+export const checkIfEventPageIsOver = (
+  page: KirbyEventPagePreviewData,
+): boolean => {
+  const dates = convertDateBlocksToEventDates(page.dates)
+  const isOver = dates.every((date) => {
+    return checkIfEventIsOver(date)
+  })
+  return isOver
+}
+
 export const checkIfEventIsOver = (event: KirbyEventDate): boolean => {
   const now = new Date()
   const eventStart = new Date(event.start)
@@ -25,5 +36,46 @@ export const checkIfEventIsOver = (event: KirbyEventDate): boolean => {
     return eventEnd < now
   } else {
     return eventStart < now
+  }
+}
+
+export const formatDate = (
+  date: KirbyEventDate,
+  options?: Intl.DateTimeFormatOptions,
+) => {
+  const userLocale = process.client ? navigator.language : 'en'
+  if (date.start && date.end) {
+    const startString = new Date(date.start).toLocaleDateString(
+      userLocale,
+      options
+        ? options
+        : {
+            year: undefined,
+            month: 'long',
+            day: 'numeric',
+          },
+    )
+    const endString = new Date(date.end).toLocaleDateString(
+      userLocale,
+      options
+        ? options
+        : {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+          },
+    )
+    return `${startString} – ${endString}`
+  } else {
+    return new Date(date.start).toLocaleDateString(
+      userLocale,
+      options
+        ? options
+        : {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+          },
+    )
   }
 }

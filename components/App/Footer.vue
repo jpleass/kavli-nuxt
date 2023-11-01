@@ -12,23 +12,25 @@ const footerContacts = computed(
 </script>
 
 <template>
-  <footer class="mx-gap-2 mb-gap overflow-hidden">
+  <footer class="md:mx-gap-2 mx-gap mb-gap overflow-hidden relative z-10">
     <div
-      class="bg-white rounded-lg w-full p-gap flex flex-row justify-between items-center"
+      class="bg-white rounded-lg w-full p-gap py-em flex md:flex-row flex-col justify-between items-center"
     >
       <!-- Left -->
       <div class="flex gap-gap items-center">
-        <div class="w-48">
+        <div class="md:w-48 w-32">
           <SVGLogoWithText />
         </div>
-        <div class="block h-12 w-px bg-black"></div>
+        <div class="lg:block h-12 w-px bg-black"></div>
         <div v-for="logo in site.footer?.logos" :key="logo.id">
           <img :src="logo.url" />
         </div>
       </div>
 
       <!-- Right -->
-      <div class="flex gap-gap items-center">
+      <div
+        class="flex md:flex-col flex-wrap flex-row xl:flex-row xl:gap-gap gap-em items-center md:items-end xl:items-center mt-gap md:mt-0"
+      >
         <UtilsLinkResolver
           v-for="footerLink in footerContacts"
           :key="footerLink.value"
@@ -37,9 +39,9 @@ const footerContacts = computed(
         >
           <UILink class="small" v-bind="uiLinkProps" />
         </UtilsLinkResolver>
-        <div class="block h-12 w-px bg-black"></div>
+        <div class="xl:block hidden h-12 w-px bg-black"></div>
 
-        <div v-if="site.footer" class="flex gap-em-half items-center">
+        <div v-if="site.footer" class="md:flex gap-em-half items-center hidden">
           <UtilsLinkResolver
             v-slot="uiLinkProps"
             v-bind="{

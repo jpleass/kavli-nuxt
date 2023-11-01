@@ -19,6 +19,7 @@ const pastItems = ref<KirbyEventPagePreviewData[]>([])
 const loadPaginationData = async () => {
   const { data } = await loadMore<KirbyEventPagePreviewData[]>()
   const items = data.value.result?.data
+  console.log('items', items)
   if (items) {
     items.forEach((item) => {
       const dates = convertDateBlocksToEventDates(item.dates)
@@ -39,7 +40,7 @@ onMounted(() => {
   <AppPageWrapper v-if="page">
     <KirbyLayouts v-if="page.layouts" :layouts="page.layouts ?? []" />
 
-    <AppSection class="mt-24">
+    <AppSection v-if="upcomingItens.length" class="mt-24">
       <h3>Upcoming Events</h3>
       <div class="flex flex-col gap-gap mt-gap-2">
         <NuxtLink
@@ -62,7 +63,7 @@ onMounted(() => {
       </div>
     </AppSection>
 
-    <AppSection class="mt-24">
+    <AppSection v-if="pastItems.length" class="mt-24">
       <h4 class="-mb-em">Past Events</h4>
       <div class="flex flex-col gap-gap mt-gap-2">
         <NuxtLink

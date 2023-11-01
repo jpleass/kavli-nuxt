@@ -15,24 +15,22 @@ setPage(page)
 </script>
 
 <template>
-  <AppPageWrapper v-if="page">
-    <AppPageWrapper2Columns>
-      <template #left>
-        <div class="mb-gap">
-          <AppBreadcrumbs />
-        </div>
-        <div class="sticky top-24">
-          <h4 class="" v-html="page.title" />
-          <div class="small mt-gap" v-html="page.date"></div>
-          <AppSocialShare class="mt-gap-2 pb-gap" />
-        </div>
-      </template>
-      <template #right>
-        <div class="mb-gap-2">
-          <KirbyBlockImage :block="page.cover" />
-        </div>
-        <KirbyLayouts v-if="page.layouts" :layouts="page.layouts ?? []" />
-      </template>
-    </AppPageWrapper2Columns>
-  </AppPageWrapper>
+  <AppPageWrapper2Columns v-if="page">
+    <template #left>
+      <div class="mb-gap">
+        <AppBreadcrumbs />
+      </div>
+      <div class="sticky top-24">
+        <h4 class="" v-html="page.title" />
+        <div class="small mt-gap" v-html="page.date"></div>
+        <AppSocialShare class="mt-gap-2 pb-gap" />
+      </div>
+    </template>
+    <template #right>
+      <div class="mb-gap-2 max-w-sm">
+        <KirbyBlockImage :block="page.cover" />
+      </div>
+      <KirbyLayouts v-if="page.layouts" :layouts="page.layouts ?? []" />
+    </template>
+  </AppPageWrapper2Columns>
 </template>

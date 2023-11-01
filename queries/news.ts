@@ -15,7 +15,7 @@ export interface KirbyNewsPagePreviewData extends KirbyPageData {
 }
 
 const newsPageQuery: KirbyQuerySchema['select'] = {
-  date: 'page.date.toDate("D M m, Y")',
+  date: 'page.postDate.toDate("D M m, Y")',
   text: 'page.text.kt',
   cover: 'page.cover.toBlocks.first',
 }
@@ -25,17 +25,24 @@ export const getNewsItemsQuery = (
   page: number,
 ): KirbyQueryRequest =>
   generateQuery(
-    'page("news").children.listed',
+    'page("news").children.listed.sortBy("postDate", "desc")',
     { ...pageQuery, ...newsPageQuery },
     limit,
     page,
   )
 
-export const getLatestNewsQuery = (pageId: string): KirbyQuerySchema =>
-  generateQuery(`page("${pageId}").latestNews`, {
-    ...pageQuery,
-    ...newsPageQuery,
-  })
+export const getLatestNewsQuery = (
+  pageId: string,
+  limit: number,
+): KirbyQuerySchema =>
+  generateQuery(
+    `page("${pageId}").latestNews.listed.sortBy("postDate", "desc")`,
+    {
+      ...pageQuery,
+      ...newsPageQuery,
+    },
+    limit,
+  )
 
 export type KirbyNewsPageData = KirbyNewsPagePreviewData
 export type KirbyNewsPageResponse = KirbyQueryResponse<KirbyNewsPageData>

@@ -22,7 +22,7 @@ export interface KirbyEventPagePreviewData extends KirbyPageDataSlim {
   images: KirbyImageData[]
 }
 
-const eventPagePreviewQuery: KirbyQuerySchema['select'] = {
+export const eventPagePreviewQuery: KirbyQuerySchema['select'] = {
   type: 'page.type',
   heading: 'page.heading',
   subheading: 'page.subheading',

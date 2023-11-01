@@ -57,7 +57,7 @@ const { width } = useElementSize(figure)
         :alt="block.content.alt"
         class="w-full"
         :class="{
-          'w-full h-full object-cover': props.fill,
+          'w-full h-full object-cover object-center': props.fill,
         }"
       />
       <KirbyUuidResolver

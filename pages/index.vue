@@ -1,19 +1,78 @@
 <script setup lang="ts">
 import type { KirbyHomePageResponse } from '~/queries'
 import { getHomePageQuery } from '~/queries'
+import { type KirbyEventPagePreviewData } from '~/queries/events'
+import { checkIfEventPageIsOver } from '~/composables/events'
 
 const query = getHomePageQuery()
 const { data } = await useKql<KirbyHomePageResponse>(query)
 
 const page = data.value?.result
 setPage(page)
+
+const hideTopSection = ref(false)
+const onScroll = () => {
+  hideTopSection.value = window.scrollY > window.innerHeight
+}
+
+const promotedEvent = ref<KirbyEventPagePreviewData | null | undefined>(
+  page?.promotedEvent,
+)
+
+onMounted(async () => {
+  window.addEventListener('scroll', onScroll)
+})
+onUnmounted(() => {
+  window.removeEventListener('scroll', onScroll)
+})
 </script>
 
 <template>
-  <div>
+  <div class="h-auto">
+    <!-- Background -->
+    <div class="bg-[#6BE746] block w-full h-full fixed top-0 left-0"></div>
+
+    <!-- Top -->
+    <div
+      class="w-full h-[90vh] flex items-center sticky top-0 z-10"
+      :class="{
+        'opacity-0 pointer-events-none': hideTopSection,
+      }"
+    >
+      <AppPageWrapper v-if="page" class="-mt-16 w-full">
+        <h2 class="max-w-[12em] leading-[1.1]" v-html="page.heading" />
+      </AppPageWrapper>
+    </div>
+
+    <ClientOnly>
+      <div
+        v-if="promotedEvent && !checkIfEventPageIsOver(promotedEvent)"
+        class="z-20 right-gap-2 hidden md:block absolute -translate-y-full"
+      >
+        <div class="pb-gap-2">
+          <NuxtLink :to="`/${promotedEvent.id}`">
+            <AppCardsEventCardCompact v-bind="promotedEvent" />
+          </NuxtLink>
+        </div>
+      </div>
+    </ClientOnly>
+
     <!-- Body -->
-    <AppPageWrapper v-if="page">
-      <KirbyLayouts v-if="page && page.layouts" :layouts="page.layouts ?? []" />
+    <div class="bg-kavli-bg w-full relative z-10">
+      <AppPageWrapper v-if="page" class="pt-gap">
+        <KirbyLayouts
+          v-if="page && page.layouts"
+          :layouts="page.layouts ?? []"
+        />
+      </AppPageWrapper>
+    </div>
+
+    <!-- Bottom -->
+    <AppPageWrapper v-if="page" class="pt-gap relative z-10">
+      <KirbyLayouts
+        v-if="page && page.bottomLayout"
+        :layouts="page.bottomLayout ?? []"
+      />
     </AppPageWrapper>
   </div>
 </template>

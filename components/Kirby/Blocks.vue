@@ -2,6 +2,7 @@
 import {
   LazyKirbyBlockCard,
   LazyKirbyBlockCards,
+  LazyKirbyBlockEvent,
   LazyKirbyBlockExpand,
   LazyKirbyBlockGap,
   LazyKirbyBlockHeading,
@@ -44,6 +45,7 @@ const blockComponents: Record<string, Component> = {
   testimonial: LazyKirbyBlockTestimonial,
   news: LazyKirbyBlockNews,
   program: LazyKirbyBlockProgram,
+  event: LazyKirbyBlockEvent,
 }
 
 const doesComponentExist = (type: string) => {

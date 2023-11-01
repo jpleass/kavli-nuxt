@@ -23,6 +23,7 @@ defineProps<UILinkProps>()
             type === 'url' || type === 'file' || type === 'page',
         }"
       />
+
       <div
         :class="{
           'font-bold text-kavli-blue':
