@@ -29,7 +29,6 @@ onMounted(() => {
 </script>
 
 <template>
-  <!-- TODO: Why does this have to be ClientOnly -->
   <ClientOnly>
     <AppCardsCard v-bind="cardProps" />
   </ClientOnly>

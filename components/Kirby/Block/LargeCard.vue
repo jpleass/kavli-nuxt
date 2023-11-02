@@ -3,7 +3,6 @@ import type { KirbyBlock } from '#nuxt-kql'
 import type { CardProps } from '~/@types'
 
 // TODO: This is weird, Card and Large Card should be the same component.
-
 export type CardBlock = Omit<CardProps, 'links, image'> & {
   links: string
   image: string
@@ -31,7 +30,6 @@ onMounted(() => {
 </script>
 
 <template>
-  <!-- TODO: Why does this have to be ClientOnly -->
   <ClientOnly>
     <AppCardsLargeCard v-bind="cardProps" />
   </ClientOnly>

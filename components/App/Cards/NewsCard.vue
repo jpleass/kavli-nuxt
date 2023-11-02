@@ -9,10 +9,7 @@ defineProps<NewsPreviewProps>()
     ref="el"
     class="rounded-lg border-2 overflow-hidden bg-white md:hover:bg-[#efefef] group transition-colors flex md:flex-row flex-col justify-between items-stretch md:h-44 2xl:h-48"
   >
-    <div
-      v-if="cover"
-      class="md:w-48 md:h-full flex-shrink-0 relative group-hover:md:w-52 transition-all"
-    >
+    <div v-if="cover" class="md:w-48 md:h-full flex-shrink-0 relative">
       <slot name="cover" />
     </div>
 

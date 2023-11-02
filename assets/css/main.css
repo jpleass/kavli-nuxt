@@ -105,4 +105,10 @@ html {
     padding-top: 0.75rem;
     line-height: 1.5em;
   }
+  .icon-wrapper {
+    @apply w-10 h-10 bg-white rounded-md flex items-center justify-center p-2 relative;
+  }
+  .icon-wrapper-small {
+    @apply w-8 h-8 bg-white rounded-md flex items-center justify-center p-[0.4rem] relative;
+  }
 }

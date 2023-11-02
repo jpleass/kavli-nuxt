@@ -14,6 +14,7 @@ const props = defineProps<{
   fill?: boolean
   collection?: KirbyImageData[]
   caption?: boolean
+  ratio?: string
 }>()
 
 const hasCaption = props.caption !== false
@@ -22,7 +23,7 @@ const page = usePage()
 // Use static data to avoid reactivity when redirecting to another page
 const images = props.collection || page.value.images
 
-const ratio = props.block.content.ratio || 'auto'
+const ratio = props.ratio || props.block.content.ratio || 'auto'
 let size: { w?: string; h?: string } = {}
 
 if (ratio !== 'auto') {

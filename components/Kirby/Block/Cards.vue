@@ -4,8 +4,8 @@ import type { CardBlock } from './Card.vue'
 
 type Cards = {
   columns: '1' | '2' | '3' | undefined
-  blocks: string //JSON
-} // TODO: Better naming convention here.
+  blocks: string // JSON
+}
 
 const props = defineProps<{
   block: KirbyBlock<'expand', Cards>

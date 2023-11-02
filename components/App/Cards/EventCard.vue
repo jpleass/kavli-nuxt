@@ -17,7 +17,7 @@ const handleClick = () => {
   >
     <div
       v-if="cover"
-      class="md:h-44 2xl:h-48 2xl:w-48 md:w-44 flex-shrink-0 relative group-hover:md:w-48 transition-all"
+      class="md:h-44 2xl:h-48 2xl:w-48 md:w-44 flex-shrink-0 relative"
     >
       <slot name="cover" />
     </div>

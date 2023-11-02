@@ -1,20 +1,14 @@
 # General
 
-- [x] Home page
-- [x] Event component
-- [x] Home latest event compact.
-- [x] Footer
-
-- [x] Mobile Header
-- [ ] Community page
-- [ ] Community Item
 - [ ] SEO
 - [ ] Page transition
-- [ ] Figure out error page
+- [ ] Micro-animations
+- [ ] Home page animation
 
 # Bugs
 
 - [ ] Cover image needs looking at for cards.
+- [ ] Scroll should lock on mobile
 
 # Components
 
