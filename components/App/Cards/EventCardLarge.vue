@@ -46,7 +46,7 @@ const handleClick = () => {
           </div>
         </div>
 
-        <a
+        <button
           v-if="!isPast && registerLink"
           :href="registerLink"
           target="_blank"
@@ -56,7 +56,7 @@ const handleClick = () => {
           <UIButton :type="'primary'" class="bg-white md:hover:bg-kavli-bg"
             >Register</UIButton
           >
-        </a>
+        </button>
       </div>
     </div>
   </div>

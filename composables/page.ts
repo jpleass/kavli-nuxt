@@ -26,11 +26,19 @@ export function setPage<T extends Record<string, any>>(page?: T) {
   // Build the page meta tags
   const { siteUrl } = useRuntimeConfig().public
   const site = useSite()
+
+  const metaTitle = page.seo.metaTitle || page.title
   const title = page.title
-    ? `${page.title} – ${site.value.title}`
+    ? `${metaTitle} – ${site.value.title}`
     : site.value.title
-  const description = page.description || site.value.description
-  const url = joinURL(siteUrl, useRoute().path)
+
+  const metaImage = page.seo.metaImage || site.value.seo?.metaImage
+  const author = page.seo.author || site.value.seo?.author
+  const description =
+    page.seo.pageMetaDescription || site.value.seo?.pageMetaDescription
+  const url = page.seo.ogUrl || page.url || site.value.url
+  const twitterCreator =
+    page.seo.twitterCreator || site.value.seo?.twitterCreator
 
   useHead({
     bodyAttrs: {
@@ -42,13 +50,17 @@ export function setPage<T extends Record<string, any>>(page?: T) {
   useSeoMeta({
     title,
     description,
+    author,
     ogTitle: title,
     ogDescription: description,
     ogUrl: url,
+    ogImage: metaImage,
     ogType: 'website',
     twitterTitle: title,
     twitterDescription: description,
     twitterCard: 'summary',
+    twitterImage: metaImage,
+    twitterCreator,
   })
 
   pageState.value = 'resolved'

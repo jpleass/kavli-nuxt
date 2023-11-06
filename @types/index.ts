@@ -12,7 +12,7 @@ export interface CardProps {
 export interface NewsPreviewProps {
   title: string
   text: string
-  date: string
+  date: string | null
   cover?: KirbyBlock<'image'>
   timeToRead?: number
 }

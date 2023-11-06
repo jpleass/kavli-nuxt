@@ -10,6 +10,7 @@ const { data } = await useKql<KirbyHomePageResponse>(query)
 const page = data.value?.result
 setPage(page)
 
+
 const hideTopSection = ref(false)
 const onScroll = () => {
   hideTopSection.value = window.scrollY > window.innerHeight
@@ -30,7 +31,13 @@ onUnmounted(() => {
 <template>
   <div class="h-auto">
     <!-- Background -->
-    <div class="bg-[#6BE746] block w-full h-full fixed top-0 left-0"></div>
+    <div class="bg-[#6BE746] block w-full h-full fixed top-0 left-0">
+      <ClientOnly>
+        <Vue3Lottie
+          :animation-link="'https://lottie.host/c31ddb92-a7e7-4d69-95dc-d221db1bd6fd/hBsqedAden.json'"
+        />
+      </ClientOnly>
+    </div>
 
     <!-- Top -->
     <div
@@ -60,19 +67,13 @@ onUnmounted(() => {
     <!-- Body -->
     <div class="bg-kavli-bg w-full relative z-10">
       <AppPageWrapper v-if="page" class="pt-gap">
-        <KirbyLayouts
-          v-if="page && page.layouts"
-          :layouts="page.layouts ?? []"
-        />
+        <KirbyLayouts v-if="page && page.layouts" :layouts="page.layouts ?? []" />
       </AppPageWrapper>
     </div>
 
     <!-- Bottom -->
     <AppPageWrapper v-if="page" class="pt-gap relative z-10">
-      <KirbyLayouts
-        v-if="page && page.bottomLayout"
-        :layouts="page.bottomLayout ?? []"
-      />
+      <KirbyLayouts v-if="page && page.bottomLayout" :layouts="page.bottomLayout ?? []" />
     </AppPageWrapper>
   </div>
 </template>

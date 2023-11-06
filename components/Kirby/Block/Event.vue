@@ -14,6 +14,13 @@ const { data: pageData } = await useKql<KirbyEventPageResponse>(
   getEventPageQuery(props.block.content.event[0]),
 )
 const event = pageData.value?.result
+if (!event) {
+  throw new Error('Event data is missing')
+}
+
+if (!event.type || !event.heading || !event.subheading || !event.dates) {
+  throw new Error('Event data is incomplete')
+}
 </script>
 
 <template>

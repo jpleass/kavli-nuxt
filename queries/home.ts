@@ -15,7 +15,6 @@ export interface KirbyHomePageData extends KirbyPageData {
 }
 
 export const homePageQuery: KirbyQuerySchema['select'] = {
-  ...pageQuery,
   heading: 'page.heading',
   promotedEvent: {
     query: 'page.promotedEvent.toPage',

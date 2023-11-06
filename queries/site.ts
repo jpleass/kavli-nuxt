@@ -2,9 +2,12 @@ import type { KirbyQueryResponse, KirbyQuerySchema } from '#nuxt-kql'
 import type { KirbyPageDataSlim } from './page'
 import { pageQuery } from './page'
 import type { LinkData } from './links'
+import type { KirbySeoData } from './seo'
+import { seoSiteQuery } from './seo'
 
 export interface KirbySiteData {
   title: string
+  url: string
   description: string
   navigationPages: KirbyPageDataSlim[]
   children: KirbyPageDataSlim[]
@@ -18,6 +21,7 @@ export interface KirbySiteData {
       url: string
     }
   }
+  seo: KirbySeoData
 }
 
 export type KirbySiteResponse = KirbyQueryResponse<KirbySiteData>
@@ -25,6 +29,7 @@ export type KirbySiteResponse = KirbyQueryResponse<KirbySiteData>
 export const siteQuery: KirbyQuerySchema = {
   query: 'site',
   select: {
+    url: true,
     title: true,
     description: true,
     navigationPages: {
@@ -60,6 +65,10 @@ export const siteQuery: KirbyQuerySchema = {
           query: 'site.footer_links.toStructure',
         },
       },
+    },
+    seo: {
+      query: 'site',
+      select: seoSiteQuery,
     },
   },
 }

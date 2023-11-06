@@ -5,6 +5,8 @@ import type {
 } from '#nuxt-kql'
 import type { KirbyImageData } from './image'
 import { kirbyImageQuery } from './image'
+import type { KirbySeoData } from './seo'
+import { seoPageQuery } from './seo'
 
 export interface KirbyPageDataSlim {
   id: string
@@ -33,6 +35,7 @@ const childQuery: KirbyQuerySchema['select'] = {
 export interface KirbyPageData extends KirbyPageDataSlim {
   images: KirbyImageData[]
   layouts: KirbyLayout[]
+  seo: KirbySeoData
 }
 
 export const pageQuerySlim: KirbyQuerySchema['select'] = {
@@ -63,6 +66,10 @@ export const pageQuery: KirbyQuerySchema['select'] = {
     select: kirbyImageQuery,
   },
   layouts: 'page.layout.toLayouts',
+  seo: {
+    query: 'page',
+    select: seoPageQuery,
+  },
 }
 
 export type KirbyPageResponse = KirbyQueryResponse<KirbyPageData>
