@@ -30,7 +30,7 @@ onUnmounted(() => {
 <template>
   <div class="h-auto">
     <!-- Background -->
-    <div class="block w-full h-full fixed top-0 left-0 bg-[#6CE746]">
+    <div class="block w-full h-screen fixed top-0 left-0 bg-[#6CE746]">
       <AppCanvasVideo />
       <!-- <ClientOnly>
         <Vue3Lottie
