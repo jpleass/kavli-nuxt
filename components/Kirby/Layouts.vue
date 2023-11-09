@@ -14,7 +14,7 @@ const getCols = (width: string) => {
     case '1/2':
       return 'col-span-1'
     default:
-      return 'md:col-span-2 col-span-1'
+      return 'md:col-span-2 col-span-1 '
   }
 }
 </script>
@@ -24,7 +24,7 @@ const getCols = (width: string) => {
     v-for="layout in layouts"
     :id="layout.id"
     :key="layout.id"
-    class="grid grid-cols-1 md:gap-gap-2 md:grid-cols-2 md:mb-gap"
+    class="grid grid-cols-1 md:gap-gap-2 gap-gap md:grid-cols-2 mb-gap"
     :class="{
       'items-end': layout.attrs.align && layout.attrs.align === 'bottom',
       'items-center': layout.attrs.align && layout.attrs.align === 'center',

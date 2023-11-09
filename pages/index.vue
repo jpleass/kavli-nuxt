@@ -10,9 +10,18 @@ const { data } = await useKql<KirbyHomePageResponse>(query)
 const page = data.value?.result
 setPage(page)
 
+const body = ref<HTMLElement | null>(null)
+const bodyInView = ref(false)
 const hideTopSection = ref(false)
 const onScroll = () => {
   hideTopSection.value = window.scrollY > window.innerHeight
+  if (body.value) {
+    const pastTop = window.scrollY > body.value.offsetTop
+    const aboveBottom =
+      window.scrollY + window.innerHeight <
+      body.value.offsetTop + body.value.offsetHeight
+    bodyInView.value = pastTop && aboveBottom
+  }
 }
 
 const promotedEvent = ref<KirbyEventPagePreviewData | null | undefined>(
@@ -31,7 +40,7 @@ onUnmounted(() => {
   <div class="h-auto">
     <!-- Background -->
     <div class="block w-full h-screen fixed top-0 left-0 bg-[#6CE746]">
-      <AppCanvasVideo />
+      <AppCanvasVideo :play-video="!bodyInView" />
       <!-- <ClientOnly>
         <Vue3Lottie
           :animation-link="'https://lottie.host/c31ddb92-a7e7-4d69-95dc-d221db1bd6fd/hBsqedAden.json'"
@@ -65,7 +74,7 @@ onUnmounted(() => {
     </ClientOnly>
 
     <!-- Body -->
-    <div class="bg-kavli-bg w-full relative z-10">
+    <div ref="body" class="bg-kavli-bg w-full relative z-10">
       <AppPageWrapper v-if="page" class="pt-gap">
         <KirbyLayouts
           v-if="page && page.layouts"

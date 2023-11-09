@@ -17,7 +17,7 @@ defineProps<{
   <div
     class="flex flex-col lg:flex-row lg:justify-between lg:items-end gap-em-half"
     :class="{
-      'pb-em': block.content.link,
+      'pb-em-half': block.content.link,
     }"
   >
     <component :is="block.content.level" class="w-full">

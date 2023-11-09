@@ -46,11 +46,13 @@
   },
   "dependencies": {
     "@types/color": "^3.0.5",
+    "@types/three": "^0.158.2",
     "color": "^4.2.3",
     "hamburgers": "^1.2.1",
     "lorem-ipsum": "^2.0.8",
     "plyr": "^3.7.8",
     "tailwindcss": "^3.3.3",
+    "three": "^0.158.0",
     "vue-lottie": "^0.2.1",
     "vue-social-sharing": "4.0.0-alpha4",
     "vue3-lottie": "^3.2.0",

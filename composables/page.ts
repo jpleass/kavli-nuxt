@@ -64,6 +64,7 @@ export function setPage<T extends Record<string, any>>(page?: T) {
   })
 
   pageState.value = 'resolved'
+  setLoading({ loading: false })
 }
 
 /**

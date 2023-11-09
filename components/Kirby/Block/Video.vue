@@ -17,7 +17,7 @@ defineProps<{
     <MediaVideo :url="block.content.url" />
     <figcaption
       v-if="block.content.caption || block.content.credits"
-      class="flex gap-2 mt-2"
+      class="flex gap-2 mt-2 caption"
     >
       <div
         v-if="block.content.caption"

@@ -50,14 +50,14 @@ watch(
         <div
           class="transition-all duration-300"
           :class="{
-            'w-[5em]': isPartiallyHidden,
-            'w-[9em]': !isPartiallyHidden,
+            'lg:w-[5em] w-[4em]': isPartiallyHidden,
+            'lg:w-[9em] w-[4em]': !isPartiallyHidden,
           }"
         >
           <SVGLogo />
         </div>
         <div
-          class="font-bold leading-none w-[12em] absolute transition-all duration-300"
+          class="font-bold leading-none w-[12em] absolute transition-all duration-300 hidden lg:block"
           :class="{
             'opacity-0 left-[calc(5em+1rem)]': isPartiallyHidden,
             'opacity-100 left-[calc(9em+1rem)]': !isPartiallyHidden,
@@ -121,7 +121,7 @@ watch(
 $hamburger-padding-x: 0px;
 $hamburger-padding-y: 0px;
 $hamburger-layer-width: 40px;
-$hamburger-layer-height: 3px;
+$hamburger-layer-height: 2px;
 $hamburger-layer-spacing: 8px;
 $hamburger-layer-spacing: 8px;
 $hamburger-layer-border-radius: 0px;

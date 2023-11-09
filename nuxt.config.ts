@@ -13,6 +13,10 @@ export default defineNuxtConfig({
     types: '/types',
   },
 
+  app: {
+    pageTransition: { name: 'page', mode: 'out-in' },
+  },
+
   kql: {
     auth: 'bearer',
     prefetch: {

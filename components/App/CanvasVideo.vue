@@ -1,11 +1,18 @@
 <script lang="tsx" setup>
+const props = defineProps<{
+  playVideo: boolean
+}>()
+
 const canvas = ref<HTMLCanvasElement | null>(null)
-import videoURL from '~/assets/videos/kavli_landing_animation-01.mp4'
+import videoURL from '~/assets/videos/kavli_landing_animation-1920.mp4'
+import mobileVideoUrl from '~/assets/videos/kavli_landing_animation-1024.mp4'
 
 const ready = ref(false)
+let frame = 0
+
 onMounted(() => {
   const video = document.createElement('video')
-  video.src = videoURL
+  video.src = window.innerWidth < 768 ? mobileVideoUrl : videoURL
   video.muted = true
   video.loop = true
   video.playsInline = true
@@ -15,55 +22,57 @@ onMounted(() => {
     if (canvas.value) {
       ready.value = true
       // Set canvas dimensions to 1920x1080
-      canvas.value.width = 1920
-      canvas.value.height = 1080
-      const ctx = canvas.value.getContext('2d')
+      canvas.value.width = window.innerWidth > 1024 ? 1920 : 1024
+      canvas.value.height = window.innerWidth > 1024 ? 1080 : 576
+      const ctx = canvas.value.getContext('2d', {
+        willReadFrequently: true,
+      })
       if (!ctx) return
-      // ctx.imageSmoothingEnabled = true
-      // ctx.imageSmoothingQuality = 'high' // or 'medium' or 'low'
+
+      // Scale the video to fit the canvas dimensions
+      const scale = Math.min(
+        canvas.value.width / video.videoWidth,
+        canvas.value.height / video.videoHeight,
+      )
+      const width = video.videoWidth * scale
+      const height = video.videoHeight * scale
+
+      // Center the video on the canvas
+      const x = (canvas.value.width - width) / 2
+      const y = (canvas.value.height - height) / 2
 
       const draw = () => {
         if (!canvas.value) return
         if (video.paused || video.ended) return
 
-        // Scale the video to fit the canvas dimensions
-        const scale = Math.min(
-          canvas.value.width / video.videoWidth,
-          canvas.value.height / video.videoHeight,
-        )
-        const width = video.videoWidth * scale
-        const height = video.videoHeight * scale
+        if (frame % 3 === 0 && props.playVideo) {
+          ctx?.drawImage(video, x, y, width, height)
+          // Get the image data and manipulate pixel colors
+          const imageData = ctx?.getImageData(x, y, width, height)
+          if (imageData) {
+            const data = imageData.data
 
-        // Center the video on the canvas
-        const x = (canvas.value.width - width) / 2
-        const y = (canvas.value.height - height) / 2
-
-        ctx?.drawImage(video, x, y, width, height)
-
-        // Get the image data and manipulate pixel colors
-        const imageData = ctx?.getImageData(x, y, width, height)
-        if (imageData) {
-          const data = imageData.data
-
-          for (let i = 0; i < data.length; i += 4) {
-            // Check if the pixel is white (R, G, and B channels are all 255)
-            if (data[i] > 120 && data[i + 1] > 120 && data[i + 2] > 120) {
-              // Set alpha channel (transparency) to 0 for white pixels
-              data[i + 3] = 0
-            } else {
-              // For non-white pixels, set alpha channel to 255 (fully opaque)
-              // Set color for non-white
-              data[i] = 243
-              data[i + 1] = 177
-              data[i + 2] = 129
-              data[i + 3] = 255
+            for (let i = 0; i < data.length; i += 4) {
+              // Check if the pixel is white (R, G, and B channels are all 255)
+              if (data[i] > 120 && data[i + 1] > 120 && data[i + 2] > 120) {
+                // Set alpha channel (transparency) to 0 for white pixels
+                data[i + 3] = 0
+              } else {
+                // For non-white pixels, set alpha channel to 255 (fully opaque)
+                // Set color for non-white
+                data[i] = 243
+                data[i + 1] = 177
+                data[i + 2] = 129
+                data[i + 3] = 255
+              }
             }
-          }
 
-          // Put the manipulated image data back to the canvas
-          ctx?.putImageData(imageData, x, y)
+            // Put the manipulated image data back to the canvas
+            ctx?.putImageData(imageData, x, y)
+          }
         }
 
+        frame++
         requestAnimationFrame(draw)
       }
 

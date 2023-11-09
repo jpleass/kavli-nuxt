@@ -18,8 +18,10 @@ export const usePagination = (
   const loadMore = async <T>() => {
     pageNum.value++
     const queryWithPagination = query(limit, pageNum.value)
+    setLoading({ loading: true })
     const response =
       await useKql<KirbyQueryResponse<T, true>>(queryWithPagination)
+    setLoading({ loading: false })
     paginationState.value = response.data.value.result?.pagination
     return response
   }

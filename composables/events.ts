@@ -51,7 +51,7 @@ export const formatDate = (
         ? options
         : {
             year: undefined,
-            month: 'long',
+            month: 'short',
             day: 'numeric',
           },
     )
@@ -61,7 +61,7 @@ export const formatDate = (
         ? options
         : {
             year: 'numeric',
-            month: 'long',
+            month: 'short',
             day: 'numeric',
           },
     )
@@ -73,7 +73,7 @@ export const formatDate = (
         ? options
         : {
             year: 'numeric',
-            month: 'long',
+            month: 'short',
             day: 'numeric',
           },
     )
