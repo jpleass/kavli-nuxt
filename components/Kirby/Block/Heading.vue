@@ -15,7 +15,7 @@ defineProps<{
 
 <template>
   <div
-    class="flex justify-between items-end"
+    class="flex flex-col lg:flex-row lg:justify-between lg:items-end gap-em-half"
     :class="{
       'pb-em': block.content.link,
     }"

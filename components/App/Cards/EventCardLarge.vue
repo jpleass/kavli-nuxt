@@ -19,19 +19,25 @@ const handleClick = () => {
       <slot name="cover" />
     </div>
 
-    <div class="py-em px-em h-auto w-full flex justify-between">
-      <div class="flex flex-col items-start h-full pr-gap">
+    <div
+      class="py-em px-em h-auto w-full flex flex-col lg:flex-row lg:justify-between"
+    >
+      <div class="flex flex-col items-start h-full lg:pr-gap mb-gap lg:mb-0">
         <div
           v-if="type"
           class="small bg-white px-3 py-2 rounded mb-em text-center"
           v-html="type"
         ></div>
-        <h4 class="font-bold mb-1" v-html="heading || title" />
-        <h4 v-if="subheading" class="italic font-normal" v-html="subheading" />
+        <div class="font-bold lg:h4 lg:mb-1" v-html="heading || title" />
+        <div
+          v-if="subheading"
+          class="italic lg:h4 font-normal"
+          v-html="subheading"
+        />
       </div>
 
       <div
-        class="flex flex-col justify-between items-start h-full pr-em w-[12em]"
+        class="flex flex-col justify-between items-start h-full pr-em lg:w-[12em]"
       >
         <div class="flex flex-col gap-1">
           <div class="flex gap-2">
