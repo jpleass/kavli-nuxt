@@ -1,6 +1,11 @@
 <script lang="tsx" setup>
 const props = defineProps<{
   playVideo: boolean
+  color: {
+    red: number
+    green: number
+    blue: number
+  }
 }>()
 
 const canvas = ref<HTMLCanvasElement | null>(null)
@@ -19,6 +24,8 @@ onMounted(() => {
   video.crossOrigin = 'anonymous'
 
   video.addEventListener('loadedmetadata', () => {
+    const color = props.color
+
     if (canvas.value) {
       ready.value = true
       // Set canvas dimensions to 1920x1080
@@ -45,7 +52,7 @@ onMounted(() => {
         if (!canvas.value) return
         if (video.paused || video.ended) return
 
-        if (frame % 3 === 0 && props.playVideo) {
+        if (frame % 2 === 0 && props.playVideo) {
           ctx?.drawImage(video, x, y, width, height)
           // Get the image data and manipulate pixel colors
           const imageData = ctx?.getImageData(x, y, width, height)
@@ -54,15 +61,17 @@ onMounted(() => {
 
             for (let i = 0; i < data.length; i += 4) {
               // Check if the pixel is white (R, G, and B channels are all 255)
-              if (data[i] > 120 && data[i + 1] > 120 && data[i + 2] > 120) {
+              if (data[i] > 128 && data[i + 1] > 128 && data[i + 2] > 128) {
                 // Set alpha channel (transparency) to 0 for white pixels
                 data[i + 3] = 0
               } else {
                 // For non-white pixels, set alpha channel to 255 (fully opaque)
                 // Set color for non-white
-                data[i] = 243
-                data[i + 1] = 177
-                data[i + 2] = 129
+                const { red, green, blue } = color
+                data[i] = red
+                data[i + 1] = green
+                data[i + 2] = blue
+
                 data[i + 3] = 255
               }
             }
@@ -86,7 +95,7 @@ onMounted(() => {
 <template>
   <canvas
     ref="canvas"
-    class="w-full h-full object-cover transition-all duration-1000"
+    class="w-full h-full object-cover transition-all dur3tion-1000"
     :class="{
       'opacity-0 scale-110 rotate-3': !ready,
       'opacity-100': ready,

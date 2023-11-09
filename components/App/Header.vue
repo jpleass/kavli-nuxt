@@ -1,16 +1,22 @@
 <script setup lang="ts">
+import { Vue3SlideUpDown } from 'vue3-slide-up-down'
+
 const router = useRouter()
 const site = useSite()
 
 const isPartiallyHidden = ref(false)
+const isAboveThreshold = ref(true)
 
 let lastScrollY = 0
+const threshold = 100
 const handleScroll = () => {
-  if (window.scrollY < 30) {
+  if (window.scrollY < threshold) {
     isPartiallyHidden.value = false
+    isAboveThreshold.value = true
     return
   } else {
     isPartiallyHidden.value = true
+    isAboveThreshold.value = false
   }
   const currentScrollY = window.scrollY
   isPartiallyHidden.value = currentScrollY > lastScrollY
@@ -39,55 +45,65 @@ watch(
 
 <template>
   <header
-    class="fixed top-0 left-0 flex w-full items-center justify-between mb-gap-2 px-gap py-2 z-50 transition-all duration-150 overflow-x-hidden"
+    class="fixed top-0 left-0 w-full px-gap py-2 z-50 transition-all duration-150 overflow-x-hidden"
     :class="{
-      'bg-white shadow-md -translate-y-full': isPartiallyHidden,
-      'bg-white shadow-md ': !isPartiallyHidden,
+      ' -translate-y-full': isPartiallyHidden,
+      'bg-white shadow-md':
+        !isPartiallyHidden && !isAboveThreshold && !isActive,
+      'delay-300 duration-300': !isActive && isAboveThreshold,
+      'bg-kavli-peach shadow-md': isActive,
     }"
   >
-    <NuxtLink class="link h-full" to="/">
-      <div class="flex items-center gap-4 relative">
-        <div
-          class="transition-all duration-300"
-          :class="{
-            'lg:w-[5em] w-[7em]': isPartiallyHidden,
-            'lg:w-[9em] w-[7em]': !isPartiallyHidden,
-          }"
-        >
-          <SVGLogo />
-        </div>
-        <div
-          class="font-bold leading-none w-[12em] absolute transition-all duration-300 hidden lg:block"
-          :class="{
-            'opacity-0 left-[calc(5em+1rem)]': isPartiallyHidden,
-            'opacity-100 left-[calc(9em+1rem)]': !isPartiallyHidden,
-          }"
-        >
-          institue of <br />
-          nanoscience delft
+    <div class="flex flex-row w-full items-center">
+      <div class="flex w-full justify-between">
+        <NuxtLink class="link h-full" to="/">
+          <div class="flex items-center gap-4 relative">
+            <div class="transition-all duration-300 lg:w-[9em] w-[6.75em]">
+              <SVGLogo />
+            </div>
+            <div
+              class="font-bold leading-none w-[12em] absolute transition-all duration-300 hidden lg:block opacity-100 left-[calc(9em+1rem)]"
+            >
+              institue of <br />
+              nanoscience delft
+            </div>
+          </div>
+        </NuxtLink>
+
+        <!-- Desktop -->
+        <nav class="hidden lg:flex md:gap-em-2 gap-gap items-center">
+          <nuxt-link
+            v-for="page in site.navigationPages"
+            :key="page.id"
+            class="lowercase font-bold link"
+            :to="`/${page.uri}`"
+          >
+            {{ page.title }}
+          </nuxt-link>
+        </nav>
+
+        <!-- Mobile button. -->
+        <div class="flex lg:hidden items-center">
+          <button
+            class="flex pointer-events-auto hamburger hamburger--squeeze"
+            :class="{ 'is-active': isActive }"
+            type="button"
+            aria-label="Menu"
+            @click="onMenuClick"
+          >
+            <span class="hamburger-box">
+              <span class="hamburger-inner"></span>
+            </span>
+          </button>
         </div>
       </div>
-    </NuxtLink>
-
-    <!-- Desktop -->
-    <nav class="hidden lg:flex md:gap-em-2 gap-gap items-center">
-      <nuxt-link
-        v-for="page in site.navigationPages"
-        :key="page.id"
-        class="lowercase font-bold link"
-        :to="`/${page.uri}`"
-      >
-        {{ page.title }}
-      </nuxt-link>
-    </nav>
+    </div>
 
     <!-- Mobile -->
-    <Transition name="fade">
-      <nav
-        v-if="isActive"
-        class="lg:hidden fixed top-0 left-0 bg-kavli-peach w-full h-full"
-      >
-        <div class="flex flex-col gap-gap p-gap mt-[15px]">
+
+    <Vue3SlideUpDown v-model="isActive" :duration="300" :opacity-closed="0">
+      <nav v-if="isActive" class="lg:hidden w-full">
+        <div class="flex flex-col gap-gap mt-[15px] pb-gap">
           <nuxt-link
             v-for="page in site.navigationPages"
             :key="page.id"
@@ -98,36 +114,23 @@ watch(
           </nuxt-link>
         </div>
       </nav>
-    </Transition>
-
-    <div class="flex lg:hidden items-center">
-      <button
-        class="flex pointer-events-auto hamburger hamburger--squeeze"
-        :class="{ 'is-active': isActive }"
-        type="button"
-        aria-label="Menu"
-        @click="onMenuClick"
-      >
-        <span class="hamburger-box">
-          <span class="hamburger-inner"></span>
-        </span>
-      </button>
-    </div>
+    </Vue3SlideUpDown>
   </header>
 </template>
 
 <style lang="scss">
-@import 'hamburgers/_sass/hamburgers/hamburgers.scss';
 $hamburger-padding-x: 0px;
 $hamburger-padding-y: 0px;
 $hamburger-layer-width: 40px;
-$hamburger-layer-height: 2px;
+$hamburger-layer-height: 3px;
 $hamburger-layer-spacing: 8px;
 $hamburger-layer-spacing: 8px;
 $hamburger-layer-border-radius: 0px;
 $hamburger-hover-opacity: 1;
 $hamburger-types: (squeeze);
 $hamburger-layer-color: currentColor;
+
+@import 'hamburgers/_sass/hamburgers/hamburgers.scss';
 
 .fade-enter-active,
 .fade-leave-active {

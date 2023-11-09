@@ -1,13 +1,16 @@
 # General
 
 - [x] Page transition
-- [ ] Micro-animations
-- [ ] Mobile check.
+- [x] Micro-animations
+- [x] Mobile check.
 - [x] SEO
 - [x] Home page animation
-- [ ] Reduce mobile menu to not be full screen.
-- [ ] HEader should be transparent at the top.
+- [x] Reduce mobile menu to not be full screen.
+- [x] Header should be transparent at the top.
+
 - [ ] Community filter added to mobile.
+- [ ] Add home video color or image.
+- [ ] Add home video foreground color.
 
 # Bugs
 

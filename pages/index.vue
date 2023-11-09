@@ -40,7 +40,21 @@ onUnmounted(() => {
   <div class="h-auto">
     <!-- Background -->
     <div class="block w-full h-screen fixed top-0 left-0 bg-[#6CE746]">
-      <AppCanvasVideo :play-video="!bodyInView" />
+      <!-- <div class="w-full h-full absolute top-0 left-0">
+        <img
+          src="https://media.macphun.com/img/uploads/macphun/blog/2063/_1.jpeg?q=75&w=1710&h=906&resize=cover"
+          class="w-full h-full object-cover"
+        />
+      </div> -->
+      <AppCanvasVideo
+        class="relative z-10 -scale-x-100"
+        :play-video="!bodyInView"
+        :color="{
+          red: 243,
+          green: 177,
+          blue: 129,
+        }"
+      />
       <!-- <ClientOnly>
         <Vue3Lottie
           :animation-link="'https://lottie.host/c31ddb92-a7e7-4d69-95dc-d221db1bd6fd/hBsqedAden.json'"
@@ -75,7 +89,7 @@ onUnmounted(() => {
 
     <!-- Body -->
     <div ref="body" class="bg-kavli-bg w-full relative z-10">
-      <AppPageWrapper v-if="page" class="pt-gap">
+      <AppPageWrapper v-if="page" class="lg:pt-gap pt-0">
         <KirbyLayouts
           v-if="page && page.layouts"
           :layouts="page.layouts ?? []"
@@ -84,7 +98,7 @@ onUnmounted(() => {
     </div>
 
     <!-- Bottom -->
-    <AppPageWrapper v-if="page" class="pt-gap relative z-10">
+    <AppPageWrapper v-if="page" class="lg:pt-gap pt-0 relative z-10">
       <KirbyLayouts
         v-if="page && page.bottomLayout"
         :layouts="page.bottomLayout ?? []"
