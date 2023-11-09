@@ -70,12 +70,12 @@ onMounted(async () => {
 @import 'plyr/dist/plyr.css';
 .video-player {
   --plyr-range-track-height: 2px;
-  --plyr-color-main: green;
+  --plyr-color-main: #ffbd8d;
   --plyr-badge-background: white;
   --plyr-audio-controls-background: white;
   --plyr-video-controls-background: transparent;
   --plyr-video-control-color: white;
-  --plyr-tooltip-color: green;
+  --plyr-tooltip-color: #ffbd8d;
 }
 
 .video-player .plyr {
@@ -95,7 +95,7 @@ onMounted(async () => {
 
 .video-player .plyr__control--overlaid svg {
   margin: auto;
-  fill: white;
+  fill: rgba(33, 34, 39, 1);
 }
 
 .video-player .plyr__controls .plyr__controls__item:first-child {

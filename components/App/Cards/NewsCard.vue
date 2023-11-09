@@ -11,9 +11,11 @@ defineProps<NewsPreviewProps>()
   >
     <div
       v-if="cover"
-      class="md:w-48 md:h-full h-52 flex-shrink-0 relative overflow-hidden transition-all"
+      class="md:w-48 md:h-full h-52 flex-shrink-0 relative overflow-hidden"
     >
-      <div class="w-full h-full group-hover:scale-110 transition-transform">
+      <div
+        class="w-full h-full group-hover:scale-110 transition-transform duration-300"
+      >
         <slot name="cover" />
       </div>
     </div>
