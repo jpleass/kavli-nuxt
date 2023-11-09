@@ -12,7 +12,10 @@ const footerContacts = computed(
 </script>
 
 <template>
-  <footer class="md:mx-gap-2 mx-gap mb-gap overflow-hidden relative z-10">
+  <footer
+    v-reveal
+    class="md:mx-gap-2 mx-gap mb-gap overflow-hidden relative z-10"
+  >
     <div
       class="bg-white rounded-lg w-full p-gap py-em flex md:flex-row flex-col justify-between items-center"
     >

@@ -15,7 +15,7 @@ const breadcrumbTrail = computed<KirbyPageDataSlim[]>(() => {
 </script>
 
 <template>
-  <div class="flex gap-em-half items-center font-bold caption">
+  <div v-reveal class="flex gap-em-half items-center font-bold caption">
     <div v-if="breadcrumbTrail.length">
       <NuxtLink class="link" :to="`/`"> home </NuxtLink>
     </div>

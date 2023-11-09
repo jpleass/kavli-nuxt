@@ -65,25 +65,28 @@ const calcGapClass = computed(() => {
 </script>
 
 <template>
-  <div v-router-links>
-    <template v-for="(block, index) in blocks" :key="index">
-      <div
-        :class="{
-          [calcGapClass]: index < blocks.length - 1,
-        }"
-      >
-        <component
-          :is="getComponent(block.type)"
-          v-if="doesComponentExist(block.type)"
-          :block="block"
-        />
-        <div v-else class="small border border-red-500 p-1">
-          <span class="font-mono font-bold text-red-500">
-            {{ block.type }} block
-          </span>
-          does not exist.
+  <ClientOnly>
+    <div v-router-links>
+      <template v-for="(block, index) in blocks" :key="index">
+        <div
+          v-reveal
+          :class="{
+            [calcGapClass]: index < blocks.length - 1,
+          }"
+        >
+          <component
+            :is="getComponent(block.type)"
+            v-if="doesComponentExist(block.type)"
+            :block="block"
+          />
+          <div v-else class="small border border-red-500 p-1">
+            <span class="font-mono font-bold text-red-500">
+              {{ block.type }} block
+            </span>
+            does not exist.
+          </div>
         </div>
-      </div>
-    </template>
-  </div>
+      </template>
+    </div>
+  </ClientOnly>
 </template>

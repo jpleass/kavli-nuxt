@@ -47,6 +47,7 @@ onUnmounted(() => {
         />
       </div> -->
       <AppCanvasVideo
+        v-reveal
         class="relative z-10 -scale-x-100"
         :play-video="!bodyInView"
         :color="{

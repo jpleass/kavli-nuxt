@@ -20,7 +20,7 @@ setPage(page)
       <div class="mb-gap">
         <AppBreadcrumbs />
       </div>
-      <div class="sticky top-16 pt-gap">
+      <div v-reveal class="sticky top-16 pt-gap">
         <h4 v-html="page.heading || page.title" />
         <h4
           v-if="page.subheading"
@@ -28,7 +28,7 @@ setPage(page)
           v-html="page.subheading"
         />
 
-        <div class="flex gap-gap mt-gap pt-gap caption">
+        <div v-reveal class="flex gap-gap mt-gap pt-gap caption">
           <div class="flex gap-1">
             <div class="font-symbols">calendar_month</div>
             <UtilsDates :dates="page.dates" />
@@ -39,7 +39,7 @@ setPage(page)
           </div>
         </div>
 
-        <div class="flex gap-gap mt-gap caption">
+        <div v-reveal class="flex gap-gap mt-gap caption">
           <a :href="page.registerLink" target="_blank">
             <UIButton :type="'primary'">Register</UIButton>
           </a>
@@ -48,11 +48,11 @@ setPage(page)
           </a>
         </div>
 
-        <AppSocialShare class="mt-gap-2 pb-gap" />
+        <AppSocialShare v-reveal class="mt-gap-2 pb-gap" />
       </div>
     </template>
     <template #right>
-      <div class="mb-gap-2 max-w-sm">
+      <div v-reveal class="mb-gap-2 max-w-sm">
         <KirbyBlockImage :block="page.cover" />
       </div>
       <KirbyLayouts v-if="page.layouts" :layouts="page.layouts ?? []" />

@@ -33,6 +33,7 @@ onMounted(() => {
         :to="`/${newsItem.uri}`"
       >
         <AppCardsNewsCard
+          v-reveal
           v-bind="{
             title: newsItem.title,
             text: newsItem.text,

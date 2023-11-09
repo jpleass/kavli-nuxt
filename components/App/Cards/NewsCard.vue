@@ -7,13 +7,15 @@ defineProps<NewsPreviewProps>()
 <template>
   <div
     ref="el"
-    class="rounded-lg border-2 overflow-hidden bg-white md:hover:bg-[#efefef] group transition-colors flex md:flex-row flex-col justify-between items-stretch md:h-44 2xl:h-48"
+    class="rounded-lg border-2 group overflow-hidden bg-white md:hover:bg-[#efefef] group transition-colors flex md:flex-row flex-col justify-between items-stretch md:h-44 2xl:h-48"
   >
     <div
       v-if="cover"
-      class="md:w-48 md:h-full h-52 flex-shrink-0 relative overflow-hidden"
+      class="md:w-48 md:h-full h-52 flex-shrink-0 relative overflow-hidden transition-all"
     >
-      <slot name="cover" />
+      <div class="w-full h-full group-hover:scale-110 transition-transform">
+        <slot name="cover" />
+      </div>
     </div>
 
     <div class="py-em px-em h-auto w-full">

@@ -20,14 +20,14 @@ setPage(page)
       <div class="mb-gap">
         <AppBreadcrumbs />
       </div>
-      <div class="sticky top-24">
+      <div v-reveal class="sticky top-24">
         <h4 class="" v-html="page.title" />
         <div class="small mt-gap" v-html="page.date"></div>
         <AppSocialShare class="mt-gap-2 pb-gap" />
       </div>
     </template>
     <template #right>
-      <div class="mb-gap-2 max-w-sm">
+      <div v-reveal class="mb-gap-2 max-w-sm">
         <KirbyBlockImage :block="page.cover" />
       </div>
       <KirbyLayouts v-if="page.layouts" :layouts="page.layouts ?? []" />

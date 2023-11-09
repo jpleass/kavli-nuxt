@@ -41,14 +41,14 @@ onMounted(() => {
     <KirbyLayouts v-if="page.layouts" :layouts="page.layouts ?? []" />
 
     <AppSection v-if="upcomingItens.length" class="mt-24">
-      <h3>Upcoming Events</h3>
+      <h3 v-reveal>Upcoming Events</h3>
       <div class="flex flex-col gap-gap mt-gap-2">
         <NuxtLink
           v-for="(eventItem, i) in upcomingItens"
           :key="i"
           :to="`/${eventItem.uri}`"
         >
-          <AppCardsEventCard v-bind="eventItem" :is-past="false">
+          <AppCardsEventCard v-reveal v-bind="eventItem" :is-past="false">
             <template #cover>
               <KirbyBlockImage
                 v-if="eventItem"
