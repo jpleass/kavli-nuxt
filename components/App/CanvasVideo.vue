@@ -8,6 +8,7 @@ onMounted(() => {
   video.src = videoURL
   video.muted = true
   video.loop = true
+  video.playsInline = true
   video.crossOrigin = 'anonymous'
 
   video.addEventListener('loadedmetadata', () => {
