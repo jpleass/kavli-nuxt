@@ -7,12 +7,12 @@ defineProps<{
   rounded?: boolean
 }>()
 
-const getCols = (width: string) => {
+const getCols = (width: string, index: number) => {
   switch (width) {
     case '1/1':
       return 'md:col-span-2 col-span-1'
     case '1/2':
-      return 'col-span-1'
+      return index === 0 ? 'col-span-1 mb-gap' : 'col-span-1'
     default:
       return 'md:col-span-2 col-span-1 '
   }
@@ -34,7 +34,7 @@ const getCols = (width: string) => {
     <div
       v-for="(column, index) in layout.columns"
       :key="index"
-      :class="getCols(column.width)"
+      :class="getCols(column.width, index)"
     >
       <KirbyBlocks
         :blocks="column.blocks"

@@ -48,7 +48,7 @@ const { width } = useElementSize(figure)
       :class="{
         auto: ratio === 'auto',
         img: ratio !== 'auto',
-        'w-full h-full': props.fill,
+        'w-full h-full flex items-center justify-center relative': props.fill,
       }"
       :style="`--w: ${size.w}; --h: ${size.h};`"
     >
@@ -58,7 +58,7 @@ const { width } = useElementSize(figure)
         :alt="block.content.alt"
         class="w-full"
         :class="{
-          'w-full h-full object-cover object-center': props.fill,
+          'w-full h-full ': props.fill,
         }"
       />
       <KirbyUuidResolver
@@ -74,7 +74,7 @@ const { width } = useElementSize(figure)
           :alt="image.alt"
           class="w-full"
           :class="{
-            'w-full h-full object-cover': props.fill,
+            'w-full h-full absolute top-0 left-0 object-cover': props.fill,
           }"
         />
       </KirbyUuidResolver>

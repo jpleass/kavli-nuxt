@@ -17,7 +17,7 @@ const calcStyle = computed(() => {
     }"
   >
     <div class="md:col-span-1 col-span-1">
-      <h4 class="font-bold mb-1" v-html="heading"></h4>
+      <h5 class="font-bold mb-1" v-html="heading"></h5>
       <h6 class="italic" v-html="subheading"></h6>
     </div>
     <div class="md:col-span-3 col-span-1 flex-col h-full justify-between flex">

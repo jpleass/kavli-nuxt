@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-[72em] mx-auto px-gap pt-32">
+  <div class="max-w-[72em] mx-auto px-gap pt-16 lg:pt-32">
     <div class="pb-6">
       <div class="absolute">
         <slot name="breadcrumbs" />

@@ -16,6 +16,15 @@ const getWebsiteDisplay = (url: string) => {
   const urlParts = url.split('/')
   return '/' + urlParts[urlParts.length - 1]
 }
+
+const ratio = ref<string | null>(null)
+onMounted(() => {
+  if (window.innerWidth < 768) {
+    ratio.value = '1/1'
+  } else {
+    ratio.value = '1/1.4'
+  }
+})
 </script>
 
 <template>
@@ -27,12 +36,13 @@ const getWebsiteDisplay = (url: string) => {
         <h4 class="font-normal italic" v-html="page.occupation" />
         <div class="flex flex-col sm:flex-row gap-gap mt-gap">
           <KirbyBlockImage
-            class="w-1/2"
+            v-if="ratio"
+            class="lg:w-1/2 w-full"
             :block="page.cover"
-            :ratio="'1/1.41'"
+            :ratio="ratio"
           />
           <div
-            class="sm:flex sm:flex-col grid grid-cols-2 gap-gap caption w-1/2"
+            class="sm:flex sm:flex-col grid grid-cols-2 gap-gap caption lg:w-1/2"
           >
             <!-- Filters -->
             <div v-for="(group, key) in page.filters" :key="key">

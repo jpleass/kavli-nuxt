@@ -57,8 +57,10 @@ const footerContacts = computed(
     </div>
 
     <!-- Below footer -->
-    <div class="small opacity-60 p-gap flex justify-between">
-      <div v-if="site.footer" v-html="site.footer.copyright"></div>
+    <div
+      class="small opacity-60 p-gap flex md:justify-between justify-center items-center flex-col md:flex-row mt-em md:mt-0 text-center"
+    >
+      <div v-if="site.footer" class="mb-2" v-html="site.footer.copyright"></div>
 
       <!-- Footer links. -->
       <div class="flex gap-gap">

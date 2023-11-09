@@ -39,7 +39,7 @@ const hasImage = computed(() => {
             :src="imageData.src"
             :srcset="imageData.srcset"
             :alt="imageData.alt"
-            class="w-full h-full object-cover"
+            class="w-full lg:h-full h-72 object-cover"
           />
         </div>
       </UtilsImageBlockToImageProps>

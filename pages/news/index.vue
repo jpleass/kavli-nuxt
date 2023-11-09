@@ -26,7 +26,7 @@ onMounted(() => {
   <AppPageWrapper v-if="page">
     <KirbyLayouts v-if="page.layouts" :layouts="page.layouts ?? []" />
 
-    <div class="flex flex-col gap-gap mt-gap-2 pt-gap-2">
+    <div class="flex flex-col gap-gap mt-gap-2 lg:pt-gap-2">
       <NuxtLink
         v-for="(newsItem, i) in newsItems"
         :key="i"

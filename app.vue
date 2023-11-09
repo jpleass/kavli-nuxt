@@ -29,9 +29,15 @@
 <style>
 .page-enter-active,
 .page-leave-active {
-  transition: opacity 350ms ease-in-out;
+  transition:
+    opacity 300ms ease-in-out,
+    transform 500ms ease-in-out;
 }
-.page-enter-from,
+
+.page-enter-from {
+  opacity: 0;
+  transform: translateY(10px);
+}
 .page-leave-to {
   opacity: 0;
 }

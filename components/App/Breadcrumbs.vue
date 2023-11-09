@@ -19,7 +19,7 @@ const breadcrumbTrail = computed<KirbyPageDataSlim[]>(() => {
     <div v-if="breadcrumbTrail.length">
       <NuxtLink class="link" :to="`/`"> home </NuxtLink>
     </div>
-    <div v-if="breadcrumbTrail.length" class="h-[0.65em]">
+    <div v-if="breadcrumbTrail.length" class="h-[0.65em] w-[0.65em]">
       <SVGChevron class="translate-y-[0.1em]" />
     </div>
     <div v-for="breadcrumb in breadcrumbTrail" :key="breadcrumb.uri">

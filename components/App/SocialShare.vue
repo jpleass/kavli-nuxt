@@ -3,8 +3,8 @@ const page = usePage()
 </script>
 
 <template>
-  <div class="small flex gap-em items-center">
-    <div class="leading-tight">Share this<br />page on:</div>
+  <div class="small flex gap-em-half items-center">
+    <div class="leading-tight mr-1">Share this<br />page on:</div>
 
     <ClientOnly>
       <ShareNetwork network="twitter" :url="page.url" :title="page.title">

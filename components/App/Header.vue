@@ -4,7 +4,7 @@ const site = useSite()
 
 const isPartiallyHidden = ref(false)
 
-// const lastScrollY = 0
+let lastScrollY = 0
 const handleScroll = () => {
   if (window.scrollY < 30) {
     isPartiallyHidden.value = false
@@ -12,9 +12,9 @@ const handleScroll = () => {
   } else {
     isPartiallyHidden.value = true
   }
-  // const currentScrollY = window.scrollY
-  // isPartiallyHidden.value = currentScrollY > lastScrollY
-  // lastScrollY = currentScrollY
+  const currentScrollY = window.scrollY
+  isPartiallyHidden.value = currentScrollY > lastScrollY
+  lastScrollY = currentScrollY
 }
 const isActive = ref(false)
 const onMenuClick = () => (isActive.value = !isActive.value)
@@ -41,8 +41,8 @@ watch(
   <header
     class="fixed top-0 left-0 flex w-full items-center justify-between mb-gap-2 px-gap py-2 z-50 transition-all duration-150 overflow-x-hidden"
     :class="{
-      'bg-white shadow-md': isPartiallyHidden,
-      'bg-transparent shadow-none': !isPartiallyHidden,
+      'bg-white shadow-md -translate-y-full': isPartiallyHidden,
+      'bg-white shadow-md ': !isPartiallyHidden,
     }"
   >
     <NuxtLink class="link h-full" to="/">
@@ -50,8 +50,8 @@ watch(
         <div
           class="transition-all duration-300"
           :class="{
-            'lg:w-[5em] w-[4em]': isPartiallyHidden,
-            'lg:w-[9em] w-[4em]': !isPartiallyHidden,
+            'lg:w-[5em] w-[7em]': isPartiallyHidden,
+            'lg:w-[9em] w-[7em]': !isPartiallyHidden,
           }"
         >
           <SVGLogo />

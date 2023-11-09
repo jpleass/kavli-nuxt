@@ -9,7 +9,10 @@ defineProps<NewsPreviewProps>()
     ref="el"
     class="rounded-lg border-2 overflow-hidden bg-white md:hover:bg-[#efefef] group transition-colors flex md:flex-row flex-col justify-between items-stretch md:h-44 2xl:h-48"
   >
-    <div v-if="cover" class="md:w-48 md:h-full flex-shrink-0 relative">
+    <div
+      v-if="cover"
+      class="md:w-48 md:h-full h-52 flex-shrink-0 relative overflow-hidden"
+    >
       <slot name="cover" />
     </div>
 
@@ -18,7 +21,7 @@ defineProps<NewsPreviewProps>()
         <h6 class="font-bold h-[2em] mb-[1em]" v-html="title" />
         <div class="h-full flex justify-between flex-col">
           <div router-links class="body-text line-clamp-2" v-html="text" />
-          <div class="small flex gap-em-half">
+          <div class="small flex gap-em-half mt-em">
             <span v-html="date" />
             <span>•</span>
             <span v-if="timeToRead" v-html="timeToRead + ' min read'"></span>

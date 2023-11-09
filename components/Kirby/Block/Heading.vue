@@ -15,7 +15,7 @@ defineProps<{
 
 <template>
   <div
-    class="flex flex-col lg:flex-row lg:justify-between lg:items-end gap-em-half"
+    class="flex flex-row lg:flex-row lg:justify-between lg:items-end items-center gap-em-half"
     :class="{
       'pb-em-half': block.content.link,
     }"
@@ -23,7 +23,7 @@ defineProps<{
     <component :is="block.content.level" class="w-full">
       <span v-html="block.content.text" />
     </component>
-    <div v-if="block.content.link" class="flex-shrink-0">
+    <div v-if="block.content.link" class="flex-shrink-0 hidden">
       <UtilsLinkResolver v-slot="uiLinkProps" v-bind="block.content.link">
         <UILink v-bind="uiLinkProps" />
       </UtilsLinkResolver>

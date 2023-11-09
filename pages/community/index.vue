@@ -44,13 +44,9 @@ const fiteredCommunityMembers = computed<KirbyCommunityPageData[]>(() => {
     </AppSection>
 
     <AppSection class="mt-gap-2 pt-gap-2">
-      <div class="grid lg:grid-cols-10 grid-cols-1">
-        <aside class="col-span-2 hidden lg:block">
-          <div
-            v-for="(group, index) in page.filters"
-            :key="index"
-            class="mb-gap"
-          >
+      <div class="grid md:grid-cols-10 grid-cols-1">
+        <aside class="col-span-2 flex gap-gap md:flex-col mb-gap-2">
+          <div v-for="(group, index) in page.filters" :key="index">
             <div class="h5 mb-1" v-html="group.title"></div>
             <div>
               <div>
@@ -79,7 +75,7 @@ const fiteredCommunityMembers = computed<KirbyCommunityPageData[]>(() => {
         </aside>
 
         <div class="col-span-8">
-          <div class="grid lg:grid-cols-4 grid-cols-2 gap-gap">
+          <div class="grid md:grid-cols-4 grid-cols-2 gap-gap">
             <NuxtLink
               v-for="(item, i) in fiteredCommunityMembers"
               :key="i"

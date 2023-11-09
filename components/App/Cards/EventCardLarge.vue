@@ -13,9 +13,12 @@ const handleClick = () => {
 <template>
   <div
     ref="el"
-    class="rounded-lg border-2 overflow-hidden bg-kavli-peach group md:hover:bg-kavli-peach-dark transition-colors flex md:flex-row flex-col justify-between items-stretch"
+    class="rounded-lg border-2 overflow-hidden bg-kavli-peach group md:hover:bg-kavli-peach-dark transition-colors min-h-[340px] flex md:flex-row flex-col justify-between items-stretch"
   >
-    <div v-if="cover" class="flex-shrink-0 relative">
+    <div
+      v-if="cover"
+      class="flex-shrink-0 md:w-72 md:h-auto w-full h-72 relative"
+    >
       <slot name="cover" />
     </div>
 
@@ -28,16 +31,12 @@ const handleClick = () => {
           class="small bg-white px-3 py-2 rounded mb-em text-center"
           v-html="type"
         ></div>
-        <div class="font-bold lg:h4 lg:mb-1" v-html="heading || title" />
-        <div
-          v-if="subheading"
-          class="italic lg:h4 font-normal"
-          v-html="subheading"
-        />
+        <h5 class="font-bold lg:mb-1" v-html="heading || title" />
+        <h5 v-if="subheading" class="italic font-normal" v-html="subheading" />
       </div>
 
       <div
-        class="flex flex-col justify-between items-start h-full pr-em lg:w-[12em]"
+        class="flex flex-col justify-between items-start h-full lg:pr-em lg:w-[12em]"
       >
         <div class="flex flex-col gap-1">
           <div class="flex gap-2">

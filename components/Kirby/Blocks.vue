@@ -67,7 +67,11 @@ const calcGapClass = computed(() => {
 <template>
   <div v-router-links>
     <template v-for="(block, index) in blocks" :key="index">
-      <div :class="{ [calcGapClass]: index < blocks.length - 1 }">
+      <div
+        :class="{
+          [calcGapClass]: index < blocks.length - 1,
+        }"
+      >
         <component
           :is="getComponent(block.type)"
           v-if="doesComponentExist(block.type)"

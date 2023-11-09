@@ -18,9 +18,9 @@ const props = defineProps<{
     <div
       v-for="(entry, index) in props.block.content.program"
       :key="index"
-      class="grid grid-cols-6"
+      class="grid sm:grid-cols-6 grid-cols-1"
     >
-      <div class="font-bold pr-em" v-html="entry.time" />
+      <div class="font-bold pr-em mb-1" v-html="entry.time" />
       <div class="col-span-5 border-l pl-em" v-html="entry.text" />
     </div>
   </div>
