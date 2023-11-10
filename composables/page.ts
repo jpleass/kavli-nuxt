@@ -1,5 +1,5 @@
 import type { KirbyQueryResponse } from '#nuxt-kql'
-import { joinURL } from 'ufo'
+
 import type { KirbyErrorResponse } from '~/queries'
 import { getPageQuery } from '~/queries'
 
@@ -24,7 +24,7 @@ export function setPage<T extends Record<string, any>>(page?: T) {
   usePage().value = page
 
   // Build the page meta tags
-  const { siteUrl } = useRuntimeConfig().public
+
   const site = useSite()
 
   const metaTitle = page.seo.metaTitle || page.title

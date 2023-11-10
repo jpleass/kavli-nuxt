@@ -48,7 +48,7 @@ onUnmounted(() => {
       </div> -->
       <AppCanvasVideo
         v-reveal
-        class="relative z-10 -scale-x-100"
+        class="relative z-10"
         :play-video="!bodyInView"
         :color="{
           red: 243,
@@ -56,11 +56,6 @@ onUnmounted(() => {
           blue: 129,
         }"
       />
-      <!-- <ClientOnly>
-        <Vue3Lottie
-          :animation-link="'https://lottie.host/c31ddb92-a7e7-4d69-95dc-d221db1bd6fd/hBsqedAden.json'"
-        /> 
-      </ClientOnly> -->
     </div>
 
     <!-- Top -->

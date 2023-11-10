@@ -44,71 +44,27 @@ const fiteredCommunityMembers = computed<KirbyCommunityPageData[]>(() => {
     </AppSection>
 
     <ClientOnly>
-      <AppSection v-reveal class="mt-gap-2 pt-gap-2">
-        <div class="grid md:grid-cols-10 grid-cols-1">
-          <aside class="col-span-2 flex gap-gap md:flex-col mb-gap-2">
-            <div v-for="(group, index) in page.filters" :key="index">
-              <div class="h5 mb-1" v-html="group.title"></div>
-              <div>
-                <div>
-                  <button
-                    class="md:hover:opacity-100"
-                    :class="{
-                      'opacity-50': filterStore[group.title] !== null,
-                    }"
-                    @click="filterStore[group.title] = null"
-                  >
-                    All
-                  </button>
-                </div>
-                <div v-for="(tag, i) in group.tags.split(',')" :key="i">
-                  <button
-                    class="md:hover:opacity-100"
-                    :class="{
-                      'opacity-50': filterStore[group.title] !== tag,
-                    }"
-                    @click="filterStore[group.title] = tag"
-                    v-html="tag"
-                  ></button>
-                </div>
-              </div>
-            </div>
-          </aside>
+      <AppSection v-reveal class="md:mt-gap-2 md:pt-gap-2">
+        <div class="md:grid md:grid-cols-10 gap-gap-2">
+          <AppCommunityFilter
+            class="md:col-span-2"
+            :filters="page.filters"
+            :filter-store="filterStore"
+            @update-filter="(id, value) => (filterStore[id] = value)"
+          />
 
-          <div class="col-span-8">
+          <div class="md:col-span-8 mt-gap">
             <div class="grid md:grid-cols-4 grid-cols-2 gap-gap">
               <NuxtLink
                 v-for="(item, i) in fiteredCommunityMembers"
                 :key="i"
                 :to="`/${item.uri}`"
               >
-                <div class="rounded-md overflow-hidden">
-                  <KirbyBlockImage
-                    :block="item.cover"
-                    :collection="item.images"
-                    :ratio="'2/3'"
-                  />
-                </div>
-                <div class="my-em-half font-bold" v-html="item.name"></div>
-                <div
-                  v-for="(group, key) in item.filters"
-                  :key="key"
-                  class="small mb-em-half"
-                  :class="{
-                    hidden: group.length === 0,
-                  }"
-                >
-                  <div class="font-bold" v-html="key"></div>
-                  <div
-                    v-for="(tag, index) in group"
-                    :key="index"
-                    class="inline"
-                  >
-                    <span v-html="tag"></span>
-                    <span v-if="index < group.length - 1">, </span>
-                  </div>
-                </div>
+                <AppCardsCommunityCard :item="item" />
               </NuxtLink>
+              <div v-if="fiteredCommunityMembers.length === 0">
+                No members found...
+              </div>
             </div>
           </div>
         </div>

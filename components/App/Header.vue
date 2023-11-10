@@ -1,25 +1,38 @@
 <script setup lang="ts">
 import { Vue3SlideUpDown } from 'vue3-slide-up-down'
+import { mapClamped } from '~/composables/math'
 
 const router = useRouter()
 const site = useSite()
-
-const isPartiallyHidden = ref(false)
-const isAboveThreshold = ref(true)
+const headerStore = useHeader()
+const direction = ref(-1)
+const translate = ref(0)
 
 let lastScrollY = 0
 const threshold = 100
 const handleScroll = () => {
+  translate.value =
+    window.scrollY < lastScrollY
+      ? 0
+      : mapClamped(window.scrollY, 0, threshold, 0, -100)
+
   if (window.scrollY < threshold) {
-    isPartiallyHidden.value = false
-    isAboveThreshold.value = true
-    return
+    setHeader({
+      isHidden: false,
+      isAboveThreshold: true,
+    })
   } else {
-    isPartiallyHidden.value = true
-    isAboveThreshold.value = false
+    setHeader({
+      isHidden: true,
+      isAboveThreshold: false,
+    })
   }
   const currentScrollY = window.scrollY
-  isPartiallyHidden.value = currentScrollY > lastScrollY
+  if (window.scrollY > threshold) {
+    setHeader({
+      isHidden: currentScrollY > lastScrollY,
+    })
+  }
   lastScrollY = currentScrollY
 }
 const isActive = ref(false)
@@ -45,20 +58,29 @@ watch(
 
 <template>
   <header
-    class="fixed top-0 left-0 w-full px-gap py-2 z-50 transition-all duration-150 overflow-x-hidden"
+    class="fixed top-0 left-0 w-full px-gap py-2 z-50 overflow-x-hidden md:h-[100px]"
+    :style="{
+      transition: headerStore.isAboveThreshold
+        ? 'background-color 200ms ease'
+        : 'transform 200ms ease, background-color 200ms ease',
+      transform: headerStore.isAboveThreshold
+        ? `translateY(${translate}px)`
+        : undefined,
+    }"
     :class="{
-      ' -translate-y-full': isPartiallyHidden,
       'bg-white shadow-md':
-        !isPartiallyHidden && !isAboveThreshold && !isActive,
-      'delay-300 duration-300': !isActive && isAboveThreshold,
+        !headerStore.isHidden && !headerStore.isAboveThreshold && !isActive,
+      'delay-300 duration-300': !isActive && headerStore.isAboveThreshold,
       'bg-kavli-peach shadow-md': isActive,
+      '-translate-y-[100px]':
+        !headerStore.isAboveThreshold && headerStore.isHidden,
     }"
   >
     <div class="flex flex-row w-full items-center">
       <div class="flex w-full justify-between">
         <NuxtLink class="link h-full" to="/">
           <div class="flex items-center gap-4 relative">
-            <div class="transition-all duration-300 lg:w-[9em] w-[6.75em]">
+            <div class="transition-all duration-300 lg:w-[9em] w-[5.5em]">
               <SVGLogo />
             </div>
             <div
@@ -107,7 +129,7 @@ watch(
           <nuxt-link
             v-for="page in site.navigationPages"
             :key="page.id"
-            class="lowercase font-bold link h4"
+            class="lowercase font-bold link text-[1.7em]"
             :to="`/${page.uri}`"
           >
             {{ page.title }}
@@ -121,10 +143,10 @@ watch(
 <style lang="scss">
 $hamburger-padding-x: 0px;
 $hamburger-padding-y: 0px;
-$hamburger-layer-width: 40px;
-$hamburger-layer-height: 3px;
-$hamburger-layer-spacing: 8px;
-$hamburger-layer-spacing: 8px;
+$hamburger-layer-width: 32px;
+$hamburger-layer-height: 2px;
+$hamburger-layer-spacing: 6px;
+$hamburger-layer-spacing: 6px;
 $hamburger-layer-border-radius: 0px;
 $hamburger-hover-opacity: 1;
 $hamburger-types: (squeeze);

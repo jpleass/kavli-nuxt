@@ -7,7 +7,8 @@
 - [x] Home page animation
 - [x] Reduce mobile menu to not be full screen.
 - [x] Header should be transparent at the top.
+- [ ] Header should appear static on initial scroll down.
 
-- [ ] Community filter added to mobile.
+- [x] Community filter added to mobile.
 - [ ] Add home video color or image.
 - [ ] Add home video foreground color.

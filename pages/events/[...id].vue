@@ -2,6 +2,7 @@
 import type { KirbyEventPageResponse } from '~/queries/events'
 import { getEventPageQuery } from '~/queries/events'
 
+const headerStore = useHeader()
 const kirbyPath = useRoute().path
 const { data: pageData } = await useKql<KirbyEventPageResponse>(
   getEventPageQuery(kirbyPath),
@@ -17,13 +18,17 @@ setPage(page)
 <template>
   <AppPageWrapper2Columns v-if="page">
     <template #left>
-      <div class="mb-gap">
-        <AppBreadcrumbs />
-      </div>
-      <div v-reveal class="sticky top-16 pt-gap">
-        <h4 v-html="page.heading || page.title" />
+      <div
+        class="sticky top-gap transition-transform duration-200"
+        :class="{
+          'md:translate-y-24':
+            !headerStore.isHidden && !headerStore.isAboveThreshold,
+        }"
+      >
+        <h4 v-reveal v-html="page.heading || page.title" />
         <h4
           v-if="page.subheading"
+          v-reveal
           class="font-normal"
           v-html="page.subheading"
         />

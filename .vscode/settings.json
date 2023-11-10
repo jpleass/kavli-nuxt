@@ -5,5 +5,6 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
   "eslint.validate": ["javascript", "javascriptreact", "vue"],
-  "vue3snippets.enable-compile-vue-file-on-did-save-code": true
+  "vue3snippets.enable-compile-vue-file-on-did-save-code": false,
+  "typescript.tsdk": "node_modules/typescript/lib"
 }
