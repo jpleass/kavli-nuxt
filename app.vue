@@ -30,13 +30,13 @@
 .page-enter-active,
 .page-leave-active {
   transition:
-    opacity 300ms ease-in-out,
-    transform 500ms ease-in-out;
+    opacity 350ms ease-in-out,
+    transform 450ms ease-in-out;
 }
 
 .page-enter-from {
   opacity: 0;
-  transform: translateY(10px);
+  transform: translateY(2px);
 }
 .page-leave-to {
   opacity: 0;

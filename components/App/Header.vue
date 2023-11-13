@@ -5,17 +5,11 @@ import { mapClamped } from '~/composables/math'
 const router = useRouter()
 const site = useSite()
 const headerStore = useHeader()
-const direction = ref(-1)
 const translate = ref(0)
 
 let lastScrollY = 0
-const threshold = 100
+const threshold = 1
 const handleScroll = () => {
-  translate.value =
-    window.scrollY < lastScrollY
-      ? 0
-      : mapClamped(window.scrollY, 0, threshold, 0, -100)
-
   if (window.scrollY < threshold) {
     setHeader({
       isHidden: false,
@@ -61,8 +55,8 @@ watch(
     class="fixed top-0 left-0 w-full px-gap py-2 z-50 overflow-x-hidden md:h-[100px]"
     :style="{
       transition: headerStore.isAboveThreshold
-        ? 'background-color 200ms ease'
-        : 'transform 200ms ease, background-color 200ms ease',
+        ? 'background-color 300ms ease'
+        : 'transform 350ms ease, background-color 200ms ease',
       transform: headerStore.isAboveThreshold
         ? `translateY(${translate}px)`
         : undefined,
