@@ -21,7 +21,7 @@
         <AppFooter />
       </div>
 
-      <AppLoadingState />
+      <!-- <AppLoadingState /> -->
     </Body>
   </Html>
 </template>
