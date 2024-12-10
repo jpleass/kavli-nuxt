@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { Vue3SlideUpDown } from 'vue3-slide-up-down'
-import { mapClamped } from '~/composables/math'
 
 const router = useRouter()
 const site = useSite()
@@ -52,7 +51,7 @@ watch(
 
 <template>
   <header
-    class="fixed top-0 left-0 w-full px-gap py-2 z-50 overflow-x-hidden md:h-[100px]"
+    class="fixed top-0 left-0 w-full px-gap py-2 z-50 overflow-hidden lg:h-[100px]"
     :style="{
       transition: headerStore.isAboveThreshold
         ? 'background-color 300ms ease'
