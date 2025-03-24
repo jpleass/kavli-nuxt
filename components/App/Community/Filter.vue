@@ -21,8 +21,7 @@ const activeFilters = computed(() => {
 })
 
 const updateFilter = (id: string, value: string | null) => {
-  console.log('updateFilter', id, value)
-  emit('update-filter', id, value)
+  emit('update-filter', id, value?.trim() || null)
 }
 const clearTag = (tag: string) => {
   for (const [key, value] of Object.entries(props.filterStore)) {

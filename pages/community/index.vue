@@ -26,7 +26,8 @@ const fiteredCommunityMembers = computed<KirbyCommunityPageData[]>(() => {
     let show = true
     for (const [key, value] of Object.entries(filterStore.value)) {
       if (value === null) continue
-      if (!member.filters[key].includes(value)) {
+      const values = Object.values(member.filters[key])
+      if (!values.includes(value.trim())) {
         show = false
         break
       }
@@ -50,14 +51,16 @@ const fiteredCommunityMembers = computed<KirbyCommunityPageData[]>(() => {
             class="md:col-span-2"
             :filters="page.filters"
             :filter-store="filterStore"
-            @update-filter="(id, value) => (filterStore[id] = value)"
+            @update-filter="
+              (id: string, value: string) => (filterStore[id] = value)
+            "
           />
 
           <div class="md:col-span-8 mt-gap">
             <div class="grid md:grid-cols-4 grid-cols-2 gap-gap">
               <NuxtLink
-                v-for="(item, i) in fiteredCommunityMembers"
-                :key="i"
+                v-for="item in fiteredCommunityMembers"
+                :key="item.id"
                 :to="`/${item.uri}`"
               >
                 <AppCardsCommunityCard :item="item" />

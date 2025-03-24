@@ -51,7 +51,7 @@ watch(
 
 <template>
   <header
-    class="fixed top-0 left-0 w-full px-gap py-2 z-50 overflow-hidden lg:h-[100px]"
+    class="fixed top-0 left-0 w-full px-gap py-2 z-50 overflow-hidden lg:h-[100px] 2xl:h-[112px]"
     :style="{
       transition: headerStore.isAboveThreshold
         ? 'background-color 300ms ease'
@@ -65,7 +65,7 @@ watch(
         !headerStore.isHidden && !headerStore.isAboveThreshold && !isActive,
       'delay-300 duration-300': !isActive && headerStore.isAboveThreshold,
       'bg-kavli-peach shadow-md': isActive,
-      '-translate-y-[100px]':
+      '-translate-y-[115px]':
         !headerStore.isAboveThreshold && headerStore.isHidden,
     }"
   >
@@ -79,7 +79,7 @@ watch(
             <div
               class="font-bold leading-none w-[12em] absolute transition-all duration-300 hidden lg:block opacity-100 left-[calc(9em+1rem)]"
             >
-              institue of <br />
+              institute of <br />
               nanoscience delft
             </div>
           </div>
